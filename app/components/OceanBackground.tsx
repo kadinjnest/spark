@@ -187,38 +187,128 @@ export default function OceanBackground() {
         </svg>
       </div>
 
-      {/* Distant surfer silhouette */}
+      {/* ── BIG BREAKING WAVE ──────────────────────────────────── */}
+      {/* A Pipeline-style right-hand barrel wave on the right side */}
       <div
-        className="absolute animate-surfboard-float opacity-20"
-        style={{ bottom: "24%", left: "12%" }}
+        className="absolute big-wave-animated"
+        style={{ bottom: "3%", right: 0, width: "54vw", minWidth: 380, pointerEvents: "none" }}
       >
         <svg
-          width="48"
-          height="32"
-          viewBox="0 0 48 32"
+          viewBox="0 0 520 330"
+          preserveAspectRatio="xMaxYMax meet"
+          className="w-full h-auto"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          {/* Wave body — main mass */}
+          <path
+            d="M0,330 L0,242 C100,212 200,192 280,177 C330,167 372,156 397,136 C416,120 426,100 421,79 C416,59 406,43 391,31 C376,19 358,11 340,8 C322,5 305,10 295,22 C285,34 278,50 275,67 C272,82 272,97 278,110 C285,123 298,133 318,139 C346,149 380,151 416,146 C455,141 490,149 520,161 L520,330 Z"
+            fill="rgba(7,35,92,0.94)"
+          />
+          {/* Wave face — lighter teal-blue highlight */}
+          <path
+            d="M0,242 C100,212 200,192 280,177 C330,167 370,156 395,135 C380,148 355,158 325,163 C290,169 255,168 224,175 C185,184 140,205 90,228 C55,243 25,255 0,260 Z"
+            fill="rgba(14,58,138,0.60)"
+          />
+          {/* Secondary face shimmer — sunlight on water */}
+          <path
+            d="M60,248 C120,228 185,213 240,210 C275,208 305,212 330,220 C295,232 250,238 200,240 C155,242 105,247 60,260 Z"
+            fill="rgba(30,100,200,0.18)"
+          />
+          {/* Barrel interior — dark hollow */}
+          <ellipse
+            cx="302"
+            cy="78"
+            rx="47"
+            ry="40"
+            transform="rotate(-8,302,78)"
+            fill="rgba(2,7,28,0.96)"
+          />
+          {/* Barrel rim — glassy edge of the tube */}
+          <path
+            d="M275,67 C272,82 272,97 278,110 C282,97 283,82 282,68 Z"
+            fill="rgba(22,82,175,0.72)"
+          />
+          <path
+            d="M295,22 C285,34 278,50 275,67 C285,58 296,45 305,30 Z"
+            fill="rgba(22,82,175,0.55)"
+          />
+          {/* Lip curling over — the top of the wave */}
+          <path
+            d="M340,8 C355,2 373,5 386,14 C376,25 360,27 345,22 C337,18 336,11 340,8 Z"
+            fill="rgba(18,72,160,0.80)"
+          />
+          {/* Foam on the crest */}
+          <path
+            d="M340,8 C352,2 370,4 382,13 C368,15 352,13 340,8 Z"
+            fill="rgba(255,255,255,0.65)"
+          />
+          <path
+            d="M294,23 C302,14 314,11 323,16 C315,22 304,25 294,23 Z"
+            fill="rgba(255,255,255,0.48)"
+          />
+          <path
+            d="M278,64 C280,55 286,49 294,50 C290,58 284,63 278,64 Z"
+            fill="rgba(255,255,255,0.38)"
+          />
+          {/* Spray particles off the crest */}
+          <circle className="spray-particle" style={{"--spray-dur":"2.2s","--spray-delay":"0s"} as React.CSSProperties} cx="355" cy="5"  r="4"   fill="rgba(255,255,255,0.60)" />
+          <circle className="spray-particle" style={{"--spray-dur":"2.6s","--spray-delay":"0.3s"} as React.CSSProperties} cx="368" cy="2"  r="2.8" fill="rgba(255,255,255,0.52)" />
+          <circle className="spray-particle" style={{"--spray-dur":"2.0s","--spray-delay":"0.7s"} as React.CSSProperties} cx="346" cy="4"  r="3.2" fill="rgba(255,255,255,0.45)" />
+          <circle className="spray-particle" style={{"--spray-dur":"3.0s","--spray-delay":"1.1s"} as React.CSSProperties} cx="374" cy="9"  r="2.2" fill="rgba(255,255,255,0.40)" />
+          <circle className="spray-particle" style={{"--spray-dur":"1.8s","--spray-delay":"0.5s"} as React.CSSProperties} cx="338" cy="10" r="2.5" fill="rgba(255,255,255,0.35)" />
+          <circle className="spray-particle" style={{"--spray-dur":"2.4s","--spray-delay":"1.5s"} as React.CSSProperties} cx="380" cy="6"  r="1.8" fill="rgba(255,255,255,0.30)" />
+          {/* Foam base / whitewater at foot of wave */}
+          <path
+            d="M0,295 C80,278 170,272 260,276 C340,280 420,285 520,280 L520,330 L0,330 Z"
+            fill="rgba(255,255,255,0.09)"
+          />
+          <path
+            d="M0,310 C60,300 140,296 230,299 C310,302 400,308 520,305 L520,330 L0,330 Z"
+            fill="rgba(255,255,255,0.06)"
+          />
+        </svg>
+      </div>
+
+      {/* ── ANIMATED SURFER ────────────────────────────────────── */}
+      {/* Phases: ride face → barrel → barrel exit → aerial backflip → land → paddle out */}
+      <div
+        className="absolute surfer-animated"
+        style={{ bottom: "22%", right: "27%", pointerEvents: "none" }}
+      >
+        <svg
+          width="54"
+          height="74"
+          viewBox="-27 -52 54 74"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
           {/* Surfboard */}
-          <ellipse cx="24" cy="22" rx="22" ry="7" fill="#ffd700" opacity="0.8" />
-          {/* Rider silhouette */}
-          <ellipse cx="20" cy="15" rx="4" ry="5" fill="#ffd700" opacity="0.8" />
-          <circle cx="20" cy="10" r="3.5" fill="#ffd700" opacity="0.8" />
-          {/* Arms */}
-          <path
-            d="M16,13 Q12,10 14,16"
-            stroke="#ffd700"
-            strokeWidth="2"
-            fill="none"
-            opacity="0.8"
-          />
-          <path
-            d="M24,13 Q28,10 26,16"
-            stroke="#ffd700"
-            strokeWidth="2"
-            fill="none"
-            opacity="0.8"
-          />
+          <ellipse cx="0" cy="20" rx="21" ry="5.5" fill="#60a5fa" opacity="0.90" />
+          <ellipse cx="0" cy="20" rx="21" ry="5.5" fill="url(#boardShine)" opacity="0.35" />
+          {/* Board fin */}
+          <path d="M14,23 L18,32 L12,24 Z" fill="#3b82f6" opacity="0.75" />
+          {/* Legs — low crouch stance */}
+          <path d="M-3,12 L-9,20 L-5,22" stroke="#ffd700" strokeWidth="2.8" strokeLinecap="round" fill="none" opacity="0.92" />
+          <path d="M3,12 L9,20 L5,22"  stroke="#ffd700" strokeWidth="2.8" strokeLinecap="round" fill="none" opacity="0.92" />
+          {/* Body */}
+          <line x1="0" y1="-8" x2="0" y2="12" stroke="#ffd700" strokeWidth="3.5" strokeLinecap="round" opacity="0.92" />
+          {/* Head */}
+          <circle cx="0" cy="-16" r="7.5" fill="#ffd700" opacity="0.93" />
+          {/* Front arm (leading) extended forward for balance */}
+          <path d="M-1,-4 L-18,2"  stroke="#ffd700" strokeWidth="2.8" strokeLinecap="round" fill="none" opacity="0.90" />
+          {/* Rear arm extended back */}
+          <path d="M-1,-2 L16,-6"  stroke="#ffd700" strokeWidth="2.8" strokeLinecap="round" fill="none" opacity="0.90" />
+          {/* Wetsuit highlight */}
+          <line x1="0" y1="-4" x2="0" y2="6" stroke="rgba(255,255,255,0.25)" strokeWidth="1.5" strokeLinecap="round" />
+          {/* Board shine gradient */}
+          <defs>
+            <linearGradient id="boardShine" x1="-21" y1="0" x2="21" y2="0" gradientUnits="userSpaceOnUse">
+              <stop offset="0%"   stopColor="white" stopOpacity="0" />
+              <stop offset="50%"  stopColor="white" stopOpacity="1" />
+              <stop offset="100%" stopColor="white" stopOpacity="0" />
+            </linearGradient>
+          </defs>
         </svg>
       </div>
 

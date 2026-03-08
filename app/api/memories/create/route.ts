@@ -23,13 +23,16 @@ function pickNarrative(seed: string): string {
 
 async function generateVideoFromImage(
   imageBase64: string,
-  title: string
+  title: string,
+  videoPrompt?: string
 ): Promise<string | null> {
   const apiKey = process.env.RUNWAY_API_KEY;
   if (!apiKey) return null;
 
   try {
-    const prompt = `${title}. A cinematic memory coming alive — gentle, natural movement, people moving naturally, soft atmospheric animation, warm and nostalgic feeling.`;
+    const prompt = videoPrompt
+      ? `${videoPrompt}. Cinematic quality, smooth motion, photorealistic.`
+      : `${title}. A cinematic memory coming alive — gentle, natural movement, people moving naturally, soft atmospheric animation, warm and nostalgic feeling.`;
 
     // Preserve the full data URI (including correct MIME type) for Runway
     const promptImage = imageBase64.startsWith("data:")
@@ -100,13 +103,14 @@ export async function POST(req: NextRequest) {
   const title = (body.title as string) || "A Beautiful Memory";
   const description = (body.description as string) || title;
   const imageBase64 = body.imageBase64 as string | undefined;
+  const videoPrompt = body.videoPrompt as string | undefined;
 
   const narrative = pickNarrative(title + description);
 
   // Attempt video generation if an image was provided
   let videoUrl: string | undefined;
   if (imageBase64) {
-    const generated = await generateVideoFromImage(imageBase64, title);
+    const generated = await generateVideoFromImage(imageBase64, title, videoPrompt);
     videoUrl = generated ?? undefined;
   }
 

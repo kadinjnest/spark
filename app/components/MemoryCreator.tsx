@@ -30,6 +30,7 @@ export default function MemoryCreator({ onMemoryCreated, onLoading }: Props) {
   const [mode, setMode] = useState<Mode>("image");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [videoPrompt, setVideoPrompt] = useState("");
   const [dragOver, setDragOver] = useState(false);
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
@@ -94,6 +95,7 @@ export default function MemoryCreator({ onMemoryCreated, onLoading }: Props) {
           title: title.trim() || undefined,
           description: description.trim() || imageFile?.name,
           imageBase64: imagePreview ?? undefined,
+          videoPrompt: videoPrompt.trim() || undefined,
         }),
       });
 
@@ -153,6 +155,27 @@ export default function MemoryCreator({ onMemoryCreated, onLoading }: Props) {
             className="w-full bg-ocean-dark/50 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/20 text-sm focus:outline-none focus:border-ocean-light/60 focus:ring-1 focus:ring-ocean-light/30 transition-all"
           />
         </div>
+
+        {/* Video direction prompt — only shown in image mode */}
+        {mode === "image" && (
+          <div>
+            <label className="block text-ocean-foam/70 text-xs font-medium uppercase tracking-widest mb-2">
+              Video Direction{" "}
+              <span className="text-ocean-foam/30">(optional — guides the motion)</span>
+            </label>
+            <textarea
+              value={videoPrompt}
+              onChange={(e) => setVideoPrompt(e.target.value)}
+              placeholder="e.g. 'slow cinematic zoom out, golden hour light, waves lapping gently' or 'dynamic action, board spray, surfer carving turns'…"
+              rows={2}
+              maxLength={300}
+              className="w-full bg-ocean-dark/50 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/20 text-sm resize-none focus:outline-none focus:border-ocean-light/60 focus:ring-1 focus:ring-ocean-light/30 transition-all leading-relaxed"
+            />
+            <p className="text-right text-white/20 text-xs mt-1">
+              {videoPrompt.length}/300
+            </p>
+          </div>
+        )}
 
         {/* Image upload */}
         {mode === "image" && (
