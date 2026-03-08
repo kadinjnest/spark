@@ -31,8 +31,13 @@ async function generateVideoFromImage(
   try {
     const prompt = `${title}. A cinematic memory coming alive — gentle, natural movement, people moving naturally, soft atmospheric animation, warm and nostalgic feeling.`;
 
+    // Strip data URI prefix if present (e.g. "data:image/jpeg;base64,...")
+    const base64Data = imageBase64.includes(",")
+      ? imageBase64.split(",")[1]
+      : imageBase64;
+
     const startRes = await fetch(
-      "https://api.dev.runwayml.com/v1/image_to_video",
+      "https://api.runwayml.com/v1/image_to_video",
       {
         method: "POST",
         headers: {
@@ -42,7 +47,7 @@ async function generateVideoFromImage(
         },
         body: JSON.stringify({
           model: "gen3a_turbo",
-          promptImage: imageBase64,
+          promptImage: `data:image/jpeg;base64,${base64Data}`,
           promptText: prompt,
           duration: 5,
           ratio: "1280:768",
@@ -62,7 +67,7 @@ async function generateVideoFromImage(
       await new Promise((r) => setTimeout(r, 5000));
 
       const pollRes = await fetch(
-        `https://api.dev.runwayml.com/v1/tasks/${taskId}`,
+        `https://api.runwayml.com/v1/tasks/${taskId}`,
         {
           headers: {
             Authorization: `Bearer ${apiKey}`,
