@@ -1,0 +1,132 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Ocean Body ────────────────────────────────────────────── */
+html, body {
+  background: #040d1a;
+  overflow-x: hidden;
+}
+
+/* ─── Custom Scrollbar ──────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0a1f3d;
+}
+::-webkit-scrollbar-thumb {
+  background: #1565a8;
+  border-radius: 3px;
+}
+
+/* ─── Wave Layers ───────────────────────────────────────────── */
+.wave-layer {
+  position: absolute;
+  left: 0;
+  width: 200%;
+  will-change: transform;
+}
+
+/* ─── Glass morphism ────────────────────────────────────────── */
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-dark {
+  background: rgba(4, 13, 26, 0.65);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ─── Typewriter cursor ─────────────────────────────────────── */
+.typewriter-cursor::after {
+  content: '|';
+  display: inline-block;
+  color: rgba(168, 220, 232, 0.8);
+  animation: blink-cursor 0.75s step-end infinite;
+  margin-left: 2px;
+}
+
+@keyframes blink-cursor {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* ─── Shimmer loading ───────────────────────────────────────── */
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.08) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer-slide 2s linear infinite;
+}
+
+@keyframes shimmer-slide {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* ─── Drag & drop zone ──────────────────────────────────────── */
+.drop-zone {
+  transition: all 0.3s ease;
+}
+.drop-zone.drag-over {
+  border-color: #17a589;
+  background: rgba(23, 165, 137, 0.08);
+  transform: scale(1.01);
+}
+
+/* ─── Video player progress bar ────────────────────────────── */
+.progress-bar {
+  background: linear-gradient(90deg, #17a589, #2196c4, #1565a8);
+  background-size: 200% 100%;
+  animation: progress-shift 3s linear infinite;
+}
+
+@keyframes progress-shift {
+  0% { background-position: 100% 0; }
+  100% { background-position: -100% 0; }
+}
+
+/* ─── Ocean light caustics ──────────────────────────────────── */
+.caustic {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(255,255,255,0.06) 0%, transparent 70%);
+  filter: blur(8px);
+  animation: caustic-drift var(--duration, 8s) ease-in-out infinite alternate;
+}
+
+@keyframes caustic-drift {
+  0% { transform: translate(0, 0) scale(1); opacity: 0.4; }
+  100% { transform: translate(30px, -20px) scale(1.2); opacity: 0.7; }
+}
+
+/* ─── Surfer text glow ──────────────────────────────────────── */
+.text-ocean-glow {
+  text-shadow: 0 0 20px rgba(33, 150, 196, 0.6), 0 0 40px rgba(33, 150, 196, 0.3);
+}
+
+.text-sunset-glow {
+  text-shadow: 0 0 20px rgba(255, 112, 67, 0.7), 0 0 40px rgba(255, 112, 67, 0.4);
+}
+
+/* ─── Wave border animation ─────────────────────────────────── */
+@keyframes border-wave {
+  0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+  25% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+  50% { border-radius: 50% 60% 50% 40% / 40% 70% 60% 50%; }
+  75% { border-radius: 70% 30% 60% 40% / 60% 40% 50% 60%; }
+}
+
+.wave-border {
+  animation: border-wave 8s ease-in-out infinite;
+}
