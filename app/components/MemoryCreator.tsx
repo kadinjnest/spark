@@ -10,6 +10,7 @@ interface MemoryResult {
   narrative: string;
   imageUrl?: string;
   videoUrl?: string;
+  videoError?: string;
   createdAt: string;
 }
 
@@ -127,10 +128,28 @@ export default function MemoryCreator({ onMemoryCreated, onLoading }: Props) {
       if (!res.ok) throw new Error("Something went wrong.");
       const data = await res.json();
 
-      onMemoryCreated({
-        ...data,
-        imageUrl: imagePreview ?? undefined,
-      });
+      // If a Runway task was started, poll for its result client-side
+      if (data.taskId) {
+        let videoUrl: string | undefined;
+        // Poll every 5 seconds for up to 3 minutes
+        for (let i = 0; i < 36; i++) {
+          await new Promise((r) => setTimeout(r, 5000));
+          const statusRes = await fetch(`/api/memories/status/${data.taskId}`);
+          if (!statusRes.ok) continue;
+          const status = await statusRes.json();
+          if (status.status === "SUCCEEDED" && status.videoUrl) {
+            videoUrl = status.videoUrl;
+            break;
+          }
+          if (status.status === "FAILED") {
+            console.error("Runway task failed:", status.error);
+            break;
+          }
+        }
+        onMemoryCreated({ ...data, videoUrl, imageUrl: imagePreview ?? undefined });
+      } else {
+        onMemoryCreated({ ...data, imageUrl: imagePreview ?? undefined });
+      }
     } catch {
       setError("Couldn't catch that wave. Please try again.");
       onLoading(false);
