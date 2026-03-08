@@ -22,7 +22,8 @@ export default function WaveLoader() {
 
     const progressTimer = setInterval(() => {
       setProgress((p) => {
-        if (p >= 92) return p;
+        if (p >= 98) return p;
+        if (p >= 92) return p + 0.08;
         return p + (Math.random() * 4 + 1);
       });
     }, 160);
