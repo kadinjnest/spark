@@ -22,8 +22,9 @@ export default function WaveLoader() {
 
     const progressTimer = setInterval(() => {
       setProgress((p) => {
-        if (p >= 98) return p;
-        if (p >= 92) return p + 0.08;
+        if (p >= 99) return p;
+        if (p >= 95) return p + 0.03;
+        if (p >= 88) return p + 0.15;
         return p + (Math.random() * 4 + 1);
       });
     }, 160);
@@ -110,11 +111,11 @@ export default function WaveLoader() {
         <div className="w-full h-2 rounded-full bg-ocean-mid/40 overflow-hidden">
           <div
             className="h-full rounded-full progress-bar transition-all duration-300 ease-out"
-            style={{ width: `${Math.min(progress, 95)}%` }}
+            style={{ width: `${Math.min(progress, 99)}%` }}
           />
         </div>
         <p className="text-center text-ocean-foam/50 text-xs mt-2 font-mono">
-          {Math.min(Math.round(progress), 95)}%
+          {Math.min(Math.round(progress), 99)}%
         </p>
       </div>
 

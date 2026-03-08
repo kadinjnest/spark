@@ -10,7 +10,7 @@ export async function GET(
   }
 
   const res = await fetch(
-    `https://api.dev.runwayml.com/v1/tasks/${params.taskId}`,
+    `https://api.runwayml.com/v1/tasks/${params.taskId}`,
     {
       headers: {
         Authorization: `Bearer ${apiKey}`,
