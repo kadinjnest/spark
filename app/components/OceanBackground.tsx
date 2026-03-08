@@ -62,16 +62,40 @@ export default function OceanBackground() {
             <stop offset="100%" stopColor="#FB923C" stopOpacity="0.6" />
           </radialGradient>
 
-          {/* ─ Board gradient ─ */}
-          <linearGradient id="boardGrad" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%"   stopColor="#9A3412" />
-            <stop offset="100%" stopColor="#EA580C" />
+          {/* ─ Board gradient (sleek silver board) ─ */}
+          <linearGradient id="boardGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%"   stopColor="#B0BEC5" />
+            <stop offset="40%"  stopColor="#E0E0E0" />
+            <stop offset="60%"  stopColor="#90A4AE" />
+            <stop offset="100%" stopColor="#CFD8DC" />
           </linearGradient>
 
-          {/* ─ Surfer body ─ */}
-          <linearGradient id="bodyGrad" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%"   stopColor="#F97316" />
-            <stop offset="100%" stopColor="#EA580C" />
+          {/* ─ Surfer body (chrome/silver metallic) ─ */}
+          <linearGradient id="bodyGrad" x1="0.2" y1="0" x2="0.8" y2="1">
+            <stop offset="0%"   stopColor="#E0E0E0" />
+            <stop offset="25%"  stopColor="#B0BEC5" />
+            <stop offset="50%"  stopColor="#CFD8DC" />
+            <stop offset="75%"  stopColor="#78909C" />
+            <stop offset="100%" stopColor="#546E7A" />
+          </linearGradient>
+
+          {/* ─ Chrome highlight (specular) ─ */}
+          <linearGradient id="chromeHighlight" x1="0" y1="0" x2="0.5" y2="1">
+            <stop offset="0%"   stopColor="#FFFFFF" stopOpacity="0.6" />
+            <stop offset="50%"  stopColor="#ECEFF1" stopOpacity="0.3" />
+            <stop offset="100%" stopColor="#90A4AE" stopOpacity="0.1" />
+          </linearGradient>
+
+          {/* ─ Chrome dark side ─ */}
+          <linearGradient id="chromeDark" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%"   stopColor="#78909C" />
+            <stop offset="100%" stopColor="#455A64" />
+          </linearGradient>
+
+          {/* ─ Board metallic sheen ─ */}
+          <linearGradient id="boardSheen" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%"   stopColor="#FFFFFF" stopOpacity="0.4" />
+            <stop offset="100%" stopColor="#FFFFFF" stopOpacity="0" />
           </linearGradient>
 
           {/* Wave inner glow */}
@@ -217,118 +241,211 @@ export default function OceanBackground() {
         </g>
 
         {/* ══════════════════════════════════════════════════════════════
-            SURFER FIGURE — stylised flat illustration
-            Orange body, white swimsuit, dark board with shadow
+            SURFER FIGURE — Silver Surfer-inspired chrome rider
+            Metallic body, dynamic low-crouch carving pose, silver board
+            Animated: carves tight turns on the wave face
         ══════════════════════════════════════════════════════════════ */}
         <g
-          className="surfer-float"
-          style={{ transformOrigin: "480px 540px" }}
+          className="surfer-carve"
+          style={{ transformOrigin: "490px 570px" }}
           filter="url(#surferShadow)"
         >
           {/* Board shadow on water */}
-          <ellipse cx="490" cy="618" rx="96" ry="12"
-            fill="rgba(154,52,18,0.22)" />
+          <ellipse cx="490" cy="620" rx="100" ry="10"
+            fill="rgba(69,90,100,0.25)" />
 
-          {/* Surfboard */}
+          {/* Surfboard — sleek silver shortboard */}
           <path
-            d="M 380,600 Q 410,578 490,568 Q 570,558 600,576 Q 590,610 490,618 Q 390,618 380,600 Z"
+            d="M 375,598 Q 400,572 490,562 Q 580,552 610,574 Q 598,612 490,620 Q 382,620 375,598 Z"
             fill="url(#boardGrad)"
           />
-          {/* Board nose highlight */}
+          {/* Board sheen overlay */}
           <path
-            d="M 590,576 Q 598,590 592,606"
-            stroke="rgba(255,255,255,0.25)"
-            strokeWidth="3"
+            d="M 385,594 Q 408,576 490,568 Q 572,560 598,576 Q 540,580 490,578 Q 430,582 385,594 Z"
+            fill="url(#boardSheen)"
+          />
+          {/* Fin */}
+          <path
+            d="M 420,614 L 415,628 L 430,620 Z"
+            fill="#546E7A"
+            opacity="0.7"
+          />
+          {/* Board stringer line */}
+          <path
+            d="M 388,600 Q 490,582 602,578"
+            stroke="rgba(84,110,122,0.3)"
+            strokeWidth="1.5"
             fill="none"
-            strokeLinecap="round"
           />
 
-          {/* ─ Back leg ─ */}
+          {/* ─ Back leg (bent, athletic crouch — chrome) ─ */}
           <path
-            d="M 504,574 L 510,596 L 530,600"
+            d="M 510,568 C 514,578 518,590 528,596 C 534,600 540,600 544,598"
             stroke="url(#bodyGrad)"
-            strokeWidth="14"
+            strokeWidth="16"
             strokeLinecap="round"
             strokeLinejoin="round"
             fill="none"
           />
-          {/* ─ Front leg ─ */}
+          {/* Back leg highlight */}
           <path
-            d="M 476,564 L 462,586 L 448,592"
+            d="M 512,570 C 515,578 518,588 526,594"
+            stroke="url(#chromeHighlight)"
+            strokeWidth="5"
+            strokeLinecap="round"
+            fill="none"
+          />
+
+          {/* ─ Front leg (deep bend, weight forward — chrome) ─ */}
+          <path
+            d="M 472,560 C 464,572 454,584 442,590 C 436,594 430,594 426,592"
             stroke="url(#bodyGrad)"
-            strokeWidth="14"
+            strokeWidth="16"
             strokeLinecap="round"
             strokeLinejoin="round"
             fill="none"
           />
-
-          {/* ─ Torso (white swimsuit) ─ */}
+          {/* Front leg highlight */}
           <path
-            d="M 464,522 C 460,508 462,492 472,484 C 482,476 500,476 510,484
-               C 520,492 522,508 516,524 C 508,538 470,538 464,522 Z"
-            fill="white"
-          />
-
-          {/* ─ Body top (shoulders & neck — orange) ─ */}
-          <path
-            d="M 468,478 C 462,468 462,456 472,450 C 482,444 502,444 510,450
-               C 518,456 518,468 512,478"
-            fill="#F97316"
-          />
-
-          {/* ─ Head ─ */}
-          <ellipse cx="490" cy="440" rx="22" ry="24" fill="#EA580C" />
-
-          {/* ─ Hair flowing back ─ */}
-          <path
-            d="M 475,428 C 455,418 432,412 418,420 C 405,428 406,448 418,456
-               C 430,462 448,458 462,446 C 472,436 476,430 475,428 Z"
-            fill="#7C2D12"
-          />
-          <path
-            d="M 475,428 C 468,416 455,408 444,412 C 435,416 432,426 436,434"
-            stroke="#7C2D12"
-            strokeWidth="8"
+            d="M 470,562 C 463,572 455,582 445,588"
+            stroke="url(#chromeHighlight)"
+            strokeWidth="5"
             strokeLinecap="round"
             fill="none"
           />
 
-          {/* ─ Face highlights ─ */}
-          <ellipse cx="498" cy="438" rx="3" ry="4" fill="rgba(255,255,255,0.30)" />
-          {/* Smile */}
-          <path d="M 484,448 Q 490,453 496,448"
-            stroke="rgba(255,255,255,0.50)"
+          {/* ─ Lower torso / hips (chrome) ─ */}
+          <path
+            d="M 466,520 C 462,534 464,550 472,558
+               L 510,562 C 518,550 520,534 516,520 Z"
+            fill="url(#bodyGrad)"
+          />
+          {/* Torso highlight */}
+          <path
+            d="M 472,524 C 470,536 472,548 476,554
+               L 496,556 C 500,548 500,536 498,524 Z"
+            fill="url(#chromeHighlight)"
+          />
+
+          {/* ─ Upper torso / chest (broad, muscular — chrome) ─ */}
+          <path
+            d="M 458,478 C 452,490 454,506 462,516
+               L 520,518 C 528,506 530,490 524,478 Z"
+            fill="url(#bodyGrad)"
+          />
+          {/* Chest highlight (specular reflection) */}
+          <path
+            d="M 468,484 C 464,494 466,506 470,512
+               L 500,514 C 504,506 504,494 500,484 Z"
+            fill="url(#chromeHighlight)"
+          />
+
+          {/* ─ Shoulders (wide, powerful) ─ */}
+          <path
+            d="M 448,480 C 452,470 470,464 490,464
+               C 510,464 528,470 532,480"
+            stroke="url(#bodyGrad)"
+            strokeWidth="18"
+            strokeLinecap="round"
+            fill="none"
+          />
+          {/* Shoulder highlight */}
+          <path
+            d="M 458,476 C 464,470 478,466 490,466 C 502,466 516,470 522,476"
+            stroke="rgba(255,255,255,0.35)"
+            strokeWidth="5"
+            strokeLinecap="round"
+            fill="none"
+          />
+
+          {/* ─ Neck ─ */}
+          <path
+            d="M 482,466 L 484,452 L 496,452 L 498,466"
+            fill="url(#bodyGrad)"
+          />
+
+          {/* ─ Head (smooth chrome dome — Silver Surfer iconic) ─ */}
+          <ellipse cx="490" cy="438" rx="20" ry="22" fill="url(#bodyGrad)" />
+          {/* Head specular highlight */}
+          <ellipse cx="484" cy="432" rx="10" ry="12"
+            fill="url(#chromeHighlight)" />
+          {/* Eye — subtle chrome slit */}
+          <path
+            d="M 496,436 C 500,434 504,436 502,438"
+            stroke="#37474F"
             strokeWidth="2"
             strokeLinecap="round"
             fill="none"
           />
-
-          {/* ─ Back arm (behind body) ─ */}
+          {/* Jaw line */}
           <path
-            d="M 512,500 L 544,488 L 558,475"
-            stroke="#EA580C"
-            strokeWidth="13"
+            d="M 478,448 C 484,454 496,454 502,448"
+            stroke="#546E7A"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            fill="none"
+          />
+
+          {/* ─ Back arm (trailing, counterbalance — chrome) ─ */}
+          <path
+            d="M 524,486 C 540,478 556,466 566,452 C 572,444 570,438 564,436"
+            stroke="url(#chromeDark)"
+            strokeWidth="14"
             strokeLinecap="round"
             strokeLinejoin="round"
             fill="none"
           />
-
-          {/* ─ Front arm (pointing forward) ─ */}
+          {/* Back arm highlight */}
           <path
-            d="M 468,500 L 436,488 L 418,476"
+            d="M 526,484 C 540,476 554,466 562,454"
+            stroke="rgba(255,255,255,0.25)"
+            strokeWidth="4"
+            strokeLinecap="round"
+            fill="none"
+          />
+          {/* Back hand */}
+          <circle cx="564" cy="436" r="6" fill="url(#bodyGrad)" />
+
+          {/* ─ Front arm (leading, reaching into turn — chrome) ─ */}
+          <path
+            d="M 458,486 C 440,476 420,464 406,454 C 398,448 396,442 400,438"
             stroke="url(#bodyGrad)"
-            strokeWidth="13"
+            strokeWidth="14"
             strokeLinecap="round"
             strokeLinejoin="round"
             fill="none"
           />
-
-          {/* ─ White suit body fill (over legs) ─ */}
+          {/* Front arm highlight */}
           <path
-            d="M 468,520 L 470,560 L 508,564 L 514,522 Z"
-            fill="white"
-            opacity="0.92"
+            d="M 456,484 C 440,474 422,464 410,454"
+            stroke="url(#chromeHighlight)"
+            strokeWidth="5"
+            strokeLinecap="round"
+            fill="none"
           />
+          {/* Front hand */}
+          <circle cx="400" cy="438" r="6" fill="url(#bodyGrad)" />
+
+          {/* ── Spray particles from board rail ── */}
+          {[
+            { cx: 370, cy: 594, r: 4, delay: 0 },
+            { cx: 358, cy: 586, r: 3, delay: 0.3 },
+            { cx: 348, cy: 578, r: 2.5, delay: 0.6 },
+            { cx: 362, cy: 572, r: 2, delay: 0.9 },
+            { cx: 376, cy: 580, r: 3, delay: 1.2 },
+          ].map((s, i) => (
+            <circle
+              key={`spray-${i}`}
+              cx={s.cx} cy={s.cy} r={s.r}
+              fill="rgba(255,255,255,0.7)"
+              className="east-spray"
+              style={{
+                "--sx": `${-8 - i * 4}px`,
+                "--sdur": "1.8s",
+                "--sdelay": `${s.delay}s`,
+              } as React.CSSProperties}
+            />
+          ))}
         </g>
 
         {/* ══════════════════════════════════════════════════════════════

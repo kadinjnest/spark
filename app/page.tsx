@@ -197,7 +197,7 @@ export default function Home() {
                   onClick={() => setStage("create")}
                   className="group flex items-center gap-2.5 px-7 py-3.5 rounded-2xl text-white font-semibold text-base shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl active:scale-95"
                   style={{
-                    background: "linear-gradient(135deg, #3DCFC2 0%, #7B5EA7 100%)",
+                    background: "linear-gradient(135deg, #3B82F6 0%, #F97316 100%)",
                     boxShadow: "0 8px 30px rgba(59,130,246,0.35)",
                   }}
                 >
@@ -408,7 +408,7 @@ export default function Home() {
                       onClick={() => setStage("create")}
                       className="group flex items-center gap-2.5 px-8 py-4 rounded-2xl text-white font-bold text-base shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl active:scale-95"
                       style={{
-                        background: "linear-gradient(135deg, #3DCFC2 0%, #7B5EA7 100%)",
+                        background: "linear-gradient(135deg, #3B82F6 0%, #F97316 100%)",
                         boxShadow: "0 8px 30px rgba(59,130,246,0.30)",
                       }}
                     >
@@ -479,8 +479,8 @@ export default function Home() {
               <div
                 className="inline-flex items-center gap-2 rounded-full px-4 py-2 mb-4 text-xs font-semibold uppercase tracking-widest"
                 style={{
-                  background: "rgba(61,207,194,0.12)",
-                  color: "#1A9A8E",
+                  background: "rgba(59,130,246,0.12)",
+                  color: "#1D4ED8",
                   border: "1px solid rgba(59,130,246,0.25)",
                 }}
               >
