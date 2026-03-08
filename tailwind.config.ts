@@ -11,20 +11,20 @@ const config: Config = {
       colors: {
         /* ── Illustration palette (new) ─────────────────────── */
         surf: {
-          teal:         "#3DCFC2",
-          "teal-mid":   "#2BBFB2",
-          "teal-dark":  "#1A9A8E",
-          "teal-pale":  "#A8EDE8",
-          pink:         "#E8A0C8",
-          "pink-light": "#F4C8E0",
-          "pink-dark":  "#C87AAA",
-          purple:       "#7B5EA7",
-          "purple-dark":"#5A3E8A",
-          "purple-body":"#6A4490",
-          offwhite:     "#F4FFFE",
+          teal:         "#3B82F6",
+          "teal-mid":   "#2563EB",
+          "teal-dark":  "#1D4ED8",
+          "teal-pale":  "#BFDBFE",
+          pink:         "#FDBA74",
+          "pink-light": "#FED7AA",
+          "pink-dark":  "#FB923C",
+          purple:       "#F97316",
+          "purple-dark":"#EA580C",
+          "purple-body":"#C2410C",
+          offwhite:     "#F0F6FF",
           text:         "#1A2340",
           subtext:      "#6B7A9A",
-          subtle:       "#E8F8F6",
+          subtle:       "#DBEAFE",
         },
         /* ── Legacy tokens for create/loading/player stages ─── */
         ocean: {

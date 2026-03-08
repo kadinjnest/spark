@@ -14,10 +14,10 @@ html, body {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #f4fffe;
+  background: #f0f6ff;
 }
 ::-webkit-scrollbar-thumb {
-  background: #3DCFC2;
+  background: #3B82F6;
   border-radius: 3px;
 }
 
@@ -26,7 +26,7 @@ html, body {
   background: rgba(255,255,255,0.82);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(61,207,194,0.14);
+  border-bottom: 1px solid rgba(59,130,246,0.14);
 }
 
 /* ─── Illustration animations ───────────────────────────────── */
@@ -105,7 +105,7 @@ html, body {
 .typewriter-cursor::after {
   content: '|';
   display: inline-block;
-  color: rgba(168, 220, 232, 0.8);
+  color: rgba(147, 197, 253, 0.8);
   animation: blink-cursor 0.75s step-end infinite;
   margin-left: 2px;
 }
@@ -137,14 +137,14 @@ html, body {
   transition: all 0.3s ease;
 }
 .drop-zone.drag-over {
-  border-color: #17a589;
-  background: rgba(23, 165, 137, 0.08);
+  border-color: #2563EB;
+  background: rgba(37, 99, 235, 0.08);
   transform: scale(1.01);
 }
 
 /* ─── Video player progress bar ────────────────────────────── */
 .progress-bar {
-  background: linear-gradient(90deg, #17a589, #2196c4, #1565a8);
+  background: linear-gradient(90deg, #3B82F6, #F97316, #2563EB);
   background-size: 200% 100%;
   animation: progress-shift 3s linear infinite;
 }
@@ -170,11 +170,11 @@ html, body {
 
 /* ─── Surfer text glow ──────────────────────────────────────── */
 .text-ocean-glow {
-  text-shadow: 0 0 20px rgba(33, 150, 196, 0.6), 0 0 40px rgba(33, 150, 196, 0.3);
+  text-shadow: 0 0 20px rgba(59, 130, 246, 0.6), 0 0 40px rgba(59, 130, 246, 0.3);
 }
 
 .text-sunset-glow {
-  text-shadow: 0 0 20px rgba(255, 112, 67, 0.7), 0 0 40px rgba(255, 112, 67, 0.4);
+  text-shadow: 0 0 20px rgba(249, 115, 22, 0.7), 0 0 40px rgba(249, 115, 22, 0.4);
 }
 
 /* ─── Wave border animation ─────────────────────────────────── */

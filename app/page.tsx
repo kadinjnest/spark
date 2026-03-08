@@ -95,7 +95,7 @@ export default function Home() {
           <div className="flex items-center gap-2.5">
             <div
               className="w-8 h-8 rounded-xl flex items-center justify-center text-white text-sm font-bold shadow-sm"
-              style={{ background: "linear-gradient(135deg, #3DCFC2, #7B5EA7)" }}
+              style={{ background: "linear-gradient(135deg, #3B82F6, #F97316)" }}
             >
               M
             </div>
@@ -118,7 +118,7 @@ export default function Home() {
           <button
             onClick={() => setStage("create")}
             className="text-sm font-semibold px-5 py-2.5 rounded-xl text-white shadow-sm transition-all duration-200 hover:scale-105 active:scale-95"
-            style={{ background: "linear-gradient(135deg, #3DCFC2 0%, #7B5EA7 100%)" }}
+            style={{ background: "linear-gradient(135deg, #3B82F6 0%, #F97316 100%)" }}
           >
             Get started
           </button>
@@ -140,9 +140,9 @@ export default function Home() {
               <div
                 className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest mb-6 animate-fade-up"
                 style={{
-                  background: "rgba(61,207,194,0.12)",
-                  color: "#1A9A8E",
-                  border: "1px solid rgba(61,207,194,0.30)",
+                  background: "rgba(59,130,246,0.12)",
+                  color: "#1D4ED8",
+                  border: "1px solid rgba(59,130,246,0.30)",
                   animationDelay: "0.05s",
                 }}
               >
@@ -164,7 +164,7 @@ export default function Home() {
                 Bring your memories<br />
                 <span
                   style={{
-                    backgroundImage: "linear-gradient(135deg, #3DCFC2 20%, #7B5EA7 80%)",
+                    backgroundImage: "linear-gradient(135deg, #3B82F6 20%, #F97316 80%)",
                     WebkitBackgroundClip: "text",
                     WebkitTextFillColor: "transparent",
                     backgroundClip: "text",
@@ -198,7 +198,7 @@ export default function Home() {
                   className="group flex items-center gap-2.5 px-7 py-3.5 rounded-2xl text-white font-semibold text-base shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl active:scale-95"
                   style={{
                     background: "linear-gradient(135deg, #3DCFC2 0%, #7B5EA7 100%)",
-                    boxShadow: "0 8px 30px rgba(61,207,194,0.35)",
+                    boxShadow: "0 8px 30px rgba(59,130,246,0.35)",
                   }}
                 >
                   Relive a memory
@@ -248,7 +248,7 @@ export default function Home() {
                 <div className="text-center mb-12">
                   <p
                     className="text-xs font-semibold uppercase tracking-widest mb-3"
-                    style={{ color: "#3DCFC2" }}
+                    style={{ color: "#3B82F6" }}
                   >
                     Everything you need
                   </p>
@@ -272,29 +272,29 @@ export default function Home() {
                       icon: <IconCamera />,
                       title: "Photo upload",
                       desc: "Drag in any photo — we extract the emotion and context automatically.",
-                      accent: "#3DCFC2",
-                      bg: "rgba(61,207,194,0.08)",
+                      accent: "#3B82F6",
+                      bg: "rgba(59,130,246,0.08)",
                     },
                     {
                       icon: <IconEdit />,
                       title: "Describe it",
                       desc: "No photo? Just write what you remember. Every detail matters.",
-                      accent: "#7B5EA7",
-                      bg: "rgba(123,94,167,0.08)",
+                      accent: "#F97316",
+                      bg: "rgba(249,115,22,0.08)",
                     },
                     {
                       icon: <IconFilm />,
                       title: "Memory video",
                       desc: "AI crafts a short, beautiful video that captures the feeling of that moment.",
-                      accent: "#E8A0C8",
-                      bg: "rgba(232,160,200,0.10)",
+                      accent: "#FDBA74",
+                      bg: "rgba(253,186,116,0.12)",
                     },
                     {
                       icon: <IconShare />,
                       title: "Share & keep",
                       desc: "Download or share with anyone. Your memory, your story, forever.",
-                      accent: "#2BBFB2",
-                      bg: "rgba(43,191,178,0.08)",
+                      accent: "#2563EB",
+                      bg: "rgba(37,99,235,0.08)",
                     },
                   ].map(({ icon, title, desc, accent, bg }) => (
                     <div
@@ -304,7 +304,7 @@ export default function Home() {
                         background: "rgba(255,255,255,0.80)",
                         backdropFilter: "blur(16px)",
                         border: "1.5px solid rgba(255,255,255,0.90)",
-                        boxShadow: "0 4px 24px rgba(26,154,142,0.08)",
+                        boxShadow: "0 4px 24px rgba(29,78,216,0.08)",
                       }}
                     >
                       <div
@@ -330,7 +330,7 @@ export default function Home() {
                 <div className="mt-20 text-center mb-12">
                   <p
                     className="text-xs font-semibold uppercase tracking-widest mb-3"
-                    style={{ color: "#7B5EA7" }}
+                    style={{ color: "#F97316" }}
                   >
                     Three steps
                   </p>
@@ -349,7 +349,7 @@ export default function Home() {
                   {/* Connecting line (desktop) */}
                   <div
                     className="hidden md:block absolute top-9 left-[calc(16.6%+16px)] right-[calc(16.6%+16px)] h-px"
-                    style={{ background: "linear-gradient(90deg, #3DCFC2, #7B5EA7)" }}
+                    style={{ background: "linear-gradient(90deg, #3B82F6, #F97316)" }}
                   />
 
                   {[
@@ -357,19 +357,19 @@ export default function Home() {
                       step: "01",
                       title: "Upload or describe",
                       desc: "Add a photo or write a few sentences about your memory.",
-                      color: "#3DCFC2",
+                      color: "#3B82F6",
                     },
                     {
                       step: "02",
                       title: "AI works its magic",
                       desc: "Our model understands the emotion, context, and story of the moment.",
-                      color: "#7B5EA7",
+                      color: "#F97316",
                     },
                     {
                       step: "03",
                       title: "Watch & share",
                       desc: "Receive a personalised video ready to download or share instantly.",
-                      color: "#E8A0C8",
+                      color: "#FDBA74",
                     },
                   ].map(({ step, title, desc, color }) => (
                     <div key={step} className="flex flex-col items-center text-center gap-4">
@@ -394,8 +394,8 @@ export default function Home() {
                   <div
                     className="inline-flex flex-col items-center gap-6 py-12 px-10 rounded-3xl"
                     style={{
-                      background: "linear-gradient(135deg, rgba(61,207,194,0.12) 0%, rgba(123,94,167,0.10) 100%)",
-                      border: "1.5px solid rgba(61,207,194,0.22)",
+                      background: "linear-gradient(135deg, rgba(59,130,246,0.12) 0%, rgba(249,115,22,0.10) 100%)",
+                      border: "1.5px solid rgba(59,130,246,0.22)",
                     }}
                   >
                     <h2
@@ -409,7 +409,7 @@ export default function Home() {
                       className="group flex items-center gap-2.5 px-8 py-4 rounded-2xl text-white font-bold text-base shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl active:scale-95"
                       style={{
                         background: "linear-gradient(135deg, #3DCFC2 0%, #7B5EA7 100%)",
-                        boxShadow: "0 8px 30px rgba(61,207,194,0.30)",
+                        boxShadow: "0 8px 30px rgba(59,130,246,0.30)",
                       }}
                     >
                       Start for free
@@ -462,7 +462,7 @@ export default function Home() {
               style={{
                 background: "rgba(255,255,255,0.85)",
                 backdropFilter: "blur(20px)",
-                border: "1.5px solid rgba(61,207,194,0.20)",
+                border: "1.5px solid rgba(59,130,246,0.20)",
               }}
             >
               <WaveLoader />
@@ -481,7 +481,7 @@ export default function Home() {
                 style={{
                   background: "rgba(61,207,194,0.12)",
                   color: "#1A9A8E",
-                  border: "1px solid rgba(61,207,194,0.25)",
+                  border: "1px solid rgba(59,130,246,0.25)",
                 }}
               >
                 <span className="w-1.5 h-1.5 rounded-full bg-surf-teal animate-pulse inline-block" />

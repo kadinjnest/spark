@@ -2,7 +2,7 @@
 
 /* ─────────────────────────────────────────────────────────────────────────
    OceanBackground — clean illustration style
-   Inspired by flat vector surf art: teal wave blob, pink foam, purple rider.
+   Blue wave blob, amber/orange foam, orange rider.
    Light white background so hero text above has full legibility.
    ───────────────────────────────────────────────────────────────────────── */
 
@@ -10,16 +10,16 @@ export default function OceanBackground() {
   return (
     <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none select-none">
 
-      {/* ── BASE: white → very-pale-teal gradient ─────────────────── */}
+      {/* ── BASE: white → very-pale-blue gradient ─────────────────── */}
       <div
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(180deg, #ffffff 0%, #f4fffe 45%, #e8f8f6 75%, #d0f0ec 100%)",
+            "linear-gradient(180deg, #ffffff 0%, #f0f6ff 45%, #e0edff 75%, #cce0ff 100%)",
         }}
       />
 
-      {/* Soft radial bloom top-right (light warmth) */}
+      {/* Soft radial bloom top-right (warm orange glow) */}
       <div
         className="absolute"
         style={{
@@ -29,7 +29,7 @@ export default function OceanBackground() {
           height: "55vw",
           borderRadius: "50%",
           background:
-            "radial-gradient(circle, rgba(244,200,224,0.28) 0%, rgba(232,160,200,0.10) 50%, transparent 75%)",
+            "radial-gradient(circle, rgba(251,191,36,0.22) 0%, rgba(249,115,22,0.08) 50%, transparent 75%)",
           filter: "blur(48px)",
         }}
       />
@@ -44,34 +44,34 @@ export default function OceanBackground() {
         <defs>
           {/* ─ Wave blob gradient ─ */}
           <radialGradient id="waveBlob" cx="48%" cy="50%" r="52%">
-            <stop offset="0%"   stopColor="#5DE0D4" />
-            <stop offset="55%"  stopColor="#3DCFC2" />
-            <stop offset="100%" stopColor="#2BBFB2" />
+            <stop offset="0%"   stopColor="#60A5FA" />
+            <stop offset="55%"  stopColor="#3B82F6" />
+            <stop offset="100%" stopColor="#2563EB" />
           </radialGradient>
 
-          {/* ─ Teal water surface ─ */}
+          {/* ─ Blue water surface ─ */}
           <linearGradient id="waterSurface" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%"   stopColor="#3DCFC2" stopOpacity="0.70" />
-            <stop offset="100%" stopColor="#1A9A8E" stopOpacity="0.95" />
+            <stop offset="0%"   stopColor="#3B82F6" stopOpacity="0.70" />
+            <stop offset="100%" stopColor="#1D4ED8" stopOpacity="0.95" />
           </linearGradient>
 
-          {/* ─ Pink foam ─ */}
-          <radialGradient id="pinkFoam" cx="50%" cy="50%" r="50%">
-            <stop offset="0%"   stopColor="#F4C8E0" />
-            <stop offset="60%"  stopColor="#E8A0C8" />
-            <stop offset="100%" stopColor="#D490B8" stopOpacity="0.6" />
+          {/* ─ Orange foam ─ */}
+          <radialGradient id="orangeFoam" cx="50%" cy="50%" r="50%">
+            <stop offset="0%"   stopColor="#FED7AA" />
+            <stop offset="60%"  stopColor="#FDBA74" />
+            <stop offset="100%" stopColor="#FB923C" stopOpacity="0.6" />
           </radialGradient>
 
           {/* ─ Board gradient ─ */}
           <linearGradient id="boardGrad" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%"   stopColor="#3D2060" />
-            <stop offset="100%" stopColor="#5A3A8A" />
+            <stop offset="0%"   stopColor="#9A3412" />
+            <stop offset="100%" stopColor="#EA580C" />
           </linearGradient>
 
           {/* ─ Surfer body ─ */}
           <linearGradient id="bodyGrad" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%"   stopColor="#7B5EA7" />
-            <stop offset="100%" stopColor="#5A3E8A" />
+            <stop offset="0%"   stopColor="#F97316" />
+            <stop offset="100%" stopColor="#EA580C" />
           </linearGradient>
 
           {/* Wave inner glow */}
@@ -86,12 +86,12 @@ export default function OceanBackground() {
           {/* Drop shadow for surfer */}
           <filter id="surferShadow" x="-30%" y="-10%" width="160%" height="130%">
             <feDropShadow dx="8" dy="10" stdDeviation="12"
-              floodColor="#1A9A8E" floodOpacity="0.30" />
+              floodColor="#1D4ED8" floodOpacity="0.30" />
           </filter>
         </defs>
 
         {/* ══════════════════════════════════════════════════════════════
-            TEAL WATER SURFACE — fills the lower third
+            BLUE WATER SURFACE — fills the lower third
         ══════════════════════════════════════════════════════════════ */}
         <path
           d="M0,680 Q180,650 360,668 Q540,686 720,660 Q900,634 1080,658 Q1260,682 1440,650
@@ -102,7 +102,7 @@ export default function OceanBackground() {
         <path
           d="M0,700 Q180,678 360,692 Q540,706 720,684 Q900,662 1080,682 Q1260,702 1440,674
              L1440,900 L0,900 Z"
-          fill="rgba(61,207,194,0.35)"
+          fill="rgba(59,130,246,0.35)"
         />
         {/* Foam line on water */}
         <path
@@ -144,7 +144,7 @@ export default function OceanBackground() {
               C 564,304  522,286  478,284
               C 440,282  390,296  360,320 Z
             "
-            fill="rgba(100,235,228,0.35)"
+            fill="rgba(147,197,253,0.35)"
           />
           {/* Wave highlight arc (top-left rim) */}
           <path
@@ -165,11 +165,11 @@ export default function OceanBackground() {
         </g>
 
         {/* ══════════════════════════════════════════════════════════════
-            PINK FOAM SPLASH — upper right of wave
+            ORANGE FOAM SPLASH — upper right of wave
             Three organic blob shapes + smaller droplets
         ══════════════════════════════════════════════════════════════ */}
         <g className="foam-sway" style={{ transformOrigin: "750px 280px" }}>
-          {/* Main pink blob */}
+          {/* Main orange blob */}
           <path
             d="
               M 680,240
@@ -180,7 +180,7 @@ export default function OceanBackground() {
               C 712,294  700,268  700,250
               C 698,244  688,248  680,240 Z
             "
-            fill="url(#pinkFoam)"
+            fill="url(#orangeFoam)"
             opacity="0.88"
           />
           {/* Second smaller blob */}
@@ -192,7 +192,7 @@ export default function OceanBackground() {
               C 884,238  860,242  842,228
               C 824,214  818,190  820,175 Z
             "
-            fill="#E8A0C8"
+            fill="#FDBA74"
             opacity="0.80"
           />
           {/* Third tiny blob */}
@@ -204,21 +204,21 @@ export default function OceanBackground() {
               C 928,252  916,250  908,242
               C 900,234  898,226  900,220 Z
             "
-            fill="#F4C8E0"
+            fill="#FED7AA"
             opacity="0.75"
           />
           {/* Droplets */}
-          <circle cx="860" cy="155" r="9"  fill="#E8A0C8" opacity="0.65" />
-          <circle cx="890" cy="140" r="6"  fill="#F0B8D4" opacity="0.55" />
-          <circle cx="924" cy="178" r="7"  fill="#E8A0C8" opacity="0.60" />
-          <circle cx="948" cy="205" r="5"  fill="#EAB8D8" opacity="0.50" />
-          <circle cx="912" cy="252" r="4"  fill="#E8A0C8" opacity="0.48" />
-          <circle cx="868" cy="130" r="4"  fill="#F0C0DC" opacity="0.45" />
+          <circle cx="860" cy="155" r="9"  fill="#FDBA74" opacity="0.65" />
+          <circle cx="890" cy="140" r="6"  fill="#FED7AA" opacity="0.55" />
+          <circle cx="924" cy="178" r="7"  fill="#FDBA74" opacity="0.60" />
+          <circle cx="948" cy="205" r="5"  fill="#FDE68A" opacity="0.50" />
+          <circle cx="912" cy="252" r="4"  fill="#FDBA74" opacity="0.48" />
+          <circle cx="868" cy="130" r="4"  fill="#FED7AA" opacity="0.45" />
         </g>
 
         {/* ══════════════════════════════════════════════════════════════
             SURFER FIGURE — stylised flat illustration
-            Purple/violet body, white swimsuit, dark board with shadow
+            Orange body, white swimsuit, dark board with shadow
         ══════════════════════════════════════════════════════════════ */}
         <g
           className="surfer-float"
@@ -227,7 +227,7 @@ export default function OceanBackground() {
         >
           {/* Board shadow on water */}
           <ellipse cx="490" cy="618" rx="96" ry="12"
-            fill="rgba(58,28,100,0.22)" />
+            fill="rgba(154,52,18,0.22)" />
 
           {/* Surfboard */}
           <path
@@ -269,25 +269,25 @@ export default function OceanBackground() {
             fill="white"
           />
 
-          {/* ─ Body top (shoulders & neck — purple) ─ */}
+          {/* ─ Body top (shoulders & neck — orange) ─ */}
           <path
             d="M 468,478 C 462,468 462,456 472,450 C 482,444 502,444 510,450
                C 518,456 518,468 512,478"
-            fill="#7B5EA7"
+            fill="#F97316"
           />
 
           {/* ─ Head ─ */}
-          <ellipse cx="490" cy="440" rx="22" ry="24" fill="#6A4490" />
+          <ellipse cx="490" cy="440" rx="22" ry="24" fill="#EA580C" />
 
           {/* ─ Hair flowing back ─ */}
           <path
             d="M 475,428 C 455,418 432,412 418,420 C 405,428 406,448 418,456
                C 430,462 448,458 462,446 C 472,436 476,430 475,428 Z"
-            fill="#2C1A40"
+            fill="#7C2D12"
           />
           <path
             d="M 475,428 C 468,416 455,408 444,412 C 435,416 432,426 436,434"
-            stroke="#2C1A40"
+            stroke="#7C2D12"
             strokeWidth="8"
             strokeLinecap="round"
             fill="none"
@@ -306,7 +306,7 @@ export default function OceanBackground() {
           {/* ─ Back arm (behind body) ─ */}
           <path
             d="M 512,500 L 544,488 L 558,475"
-            stroke="#5A3E8A"
+            stroke="#EA580C"
             strokeWidth="13"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -351,7 +351,7 @@ export default function OceanBackground() {
           />
         ))}
 
-        {/* Small teal circles (secondary foam dots around wave) */}
+        {/* Small blue circles (secondary foam dots around wave) */}
         {[
           {cx:300,cy:308,r:8,o:0.40},
           {cx:254,cy:410,r:6,o:0.30},
@@ -363,7 +363,7 @@ export default function OceanBackground() {
           <circle
             key={i}
             cx={d.cx} cy={d.cy} r={d.r}
-            fill="#3DCFC2"
+            fill="#3B82F6"
             opacity={d.o}
             className="dot-drift"
             style={{ animationDelay: `${i * 0.55}s` } as React.CSSProperties}
@@ -376,7 +376,7 @@ export default function OceanBackground() {
         className="absolute bottom-0 left-0 right-0 h-24 pointer-events-none"
         style={{
           background:
-            "linear-gradient(to top, rgba(26,154,142,0.08), transparent)",
+            "linear-gradient(to top, rgba(29,78,216,0.08), transparent)",
         }}
       />
     </div>
