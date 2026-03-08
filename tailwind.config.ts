@@ -9,35 +9,53 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        /* ── Illustration palette (new) ─────────────────────── */
+        surf: {
+          teal:         "#3DCFC2",
+          "teal-mid":   "#2BBFB2",
+          "teal-dark":  "#1A9A8E",
+          "teal-pale":  "#A8EDE8",
+          pink:         "#E8A0C8",
+          "pink-light": "#F4C8E0",
+          "pink-dark":  "#C87AAA",
+          purple:       "#7B5EA7",
+          "purple-dark":"#5A3E8A",
+          "purple-body":"#6A4490",
+          offwhite:     "#F4FFFE",
+          text:         "#1A2340",
+          subtext:      "#6B7A9A",
+          subtle:       "#E8F8F6",
+        },
+        /* ── Legacy tokens for create/loading/player stages ─── */
         ocean: {
-          deep: "#040d1a",
-          dark: "#0a1f3d",
-          mid: "#0e3460",
+          deep:   "#040d1a",
+          dark:   "#0a1f3d",
+          mid:    "#0e3460",
           bright: "#1565a8",
-          light: "#2196c4",
-          teal: "#17a589",
-          foam: "#a8dce8",
+          light:  "#2196c4",
+          teal:   "#17a589",
+          foam:   "#a8dce8",
         },
         sand: {
           light: "#fff9e6",
-          mid: "#f5deb3",
-          dark: "#deb887",
-          warm: "#c8a96a",
+          mid:   "#f5deb3",
+          dark:  "#deb887",
+          warm:  "#c8a96a",
         },
         sunset: {
           orange: "#ff7043",
-          coral: "#f7627b",
-          gold: "#ffd700",
-          peach: "#ffb347",
+          coral:  "#f7627b",
+          gold:   "#ffd700",
+          peach:  "#ffb347",
         },
         wave: {
           white: "rgba(255,255,255,0.85)",
-          foam: "rgba(255,255,255,0.4)",
+          foam:  "rgba(255,255,255,0.4)",
         },
       },
       fontFamily: {
-        display: ["Georgia", "Cambria", "Times New Roman", "serif"],
-        sans: ["system-ui", "sans-serif"],
+        display: ['"Inter"', '"SF Pro Display"', "system-ui", "sans-serif"],
+        sans:    ['"Inter"', '"SF Pro Text"',    "system-ui", "sans-serif"],
       },
       backgroundImage: {
         "ocean-gradient": "linear-gradient(180deg, #1a6ba5 0%, #0e3460 40%, #040d1a 100%)",

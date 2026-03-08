@@ -2,10 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ─── Ocean Body ────────────────────────────────────────────── */
+/* ─── Body ──────────────────────────────────────────────────── */
 html, body {
-  background: #040d1a;
+  background: #ffffff;
   overflow-x: hidden;
+  color: #1A2340;
 }
 
 /* ─── Custom Scrollbar ──────────────────────────────────────── */
@@ -13,11 +14,68 @@ html, body {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #0a1f3d;
+  background: #f4fffe;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1565a8;
+  background: #3DCFC2;
   border-radius: 3px;
+}
+
+/* ─── Nav blur ──────────────────────────────────────────────── */
+.nav-blur {
+  background: rgba(255,255,255,0.82);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(61,207,194,0.14);
+}
+
+/* ─── Illustration animations ───────────────────────────────── */
+
+/* Wave blob gentle breathing */
+@keyframes wave-blob-breathe {
+  0%, 100% { transform: scale(1) translateY(0);     }
+  50%       { transform: scale(1.018) translateY(-5px); }
+}
+.wave-blob-breathe {
+  animation: wave-blob-breathe 6s ease-in-out infinite;
+}
+
+/* Pink foam gentle sway */
+@keyframes foam-sway {
+  0%, 100% { transform: rotate(0deg) scale(1);       }
+  33%       { transform: rotate(1.5deg) scale(1.02);  }
+  66%       { transform: rotate(-1deg) scale(0.99);   }
+}
+.foam-sway {
+  animation: foam-sway 5s ease-in-out infinite;
+}
+
+/* Surfer gentle float */
+@keyframes surfer-float {
+  0%, 100% { transform: translateY(0)   rotate(0deg);    }
+  40%       { transform: translateY(-8px) rotate(1.5deg); }
+  70%       { transform: translateY(-4px) rotate(-1deg);  }
+}
+.surfer-float {
+  animation: surfer-float 4.5s ease-in-out infinite;
+}
+
+/* Water sparkle shimmer */
+@keyframes shimmer-sparkle {
+  0%, 100% { opacity: 0.20; transform: scaleX(1);    }
+  50%       { opacity: 0.55; transform: scaleX(1.15); }
+}
+.shimmer-sparkle {
+  animation: shimmer-sparkle 2.8s ease-in-out infinite;
+}
+
+/* Small dots drift */
+@keyframes dot-drift {
+  0%, 100% { transform: translateY(0)   scale(1);    opacity: 0.35; }
+  50%       { transform: translateY(-7px) scale(1.1); opacity: 0.55; }
+}
+.dot-drift {
+  animation: dot-drift 3.8s ease-in-out infinite;
 }
 
 /* ─── Wave Layers ───────────────────────────────────────────── */

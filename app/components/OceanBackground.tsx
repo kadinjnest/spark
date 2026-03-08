@@ -1,145 +1,40 @@
 "use client";
 
 /* ─────────────────────────────────────────────────────────────────────────
-   OceanBackground — East-coast beach-break scene
-   · Sky, sun, drifting clouds
-   · Three simultaneous peaking waves (left / centre / right) with foam
-   · Crowd: 4 lineup surfers (back), 3 riding surfers (mid), 1 close up
-   · All 3-D depth simulated with scale + opacity layers
+   OceanBackground — clean illustration style
+   Inspired by flat vector surf art: teal wave blob, pink foam, purple rider.
+   Light white background so hero text above has full legibility.
    ───────────────────────────────────────────────────────────────────────── */
-
-function Cloud({ w }: { w: number }) {
-  const h = w * 0.38;
-  return (
-    <svg width={w} height={h} viewBox={`0 0 ${w} ${h}`} fill="none">
-      <ellipse cx={w * 0.5} cy={h * 0.72} rx={w * 0.48} ry={h * 0.28} fill="white" opacity="0.9" />
-      <ellipse cx={w * 0.32} cy={h * 0.6} rx={w * 0.24} ry={h * 0.34} fill="white" opacity="0.88" />
-      <ellipse cx={w * 0.62} cy={h * 0.56} rx={w * 0.22} ry={h * 0.32} fill="white" opacity="0.85" />
-      <ellipse cx={w * 0.48} cy={h * 0.44} rx={w * 0.18} ry={h * 0.28} fill="white" opacity="0.82" />
-    </svg>
-  );
-}
-
-/* Generic surfer — standing, riding */
-function RiderFigure() {
-  return (
-    <>
-      {/* Board */}
-      <ellipse cx="0" cy="18" rx="22" ry="5" fill="#60a5fa" opacity="0.92" />
-      <ellipse cx="0" cy="18" rx="22" ry="5" fill="url(#boardShine)" opacity="0.3" />
-      <path d="M14,22 L18,31 L12,23 Z" fill="#3b82f6" opacity="0.7" />
-      {/* Legs */}
-      <path d="M-3,10 L-9,19 L-4,21" stroke="#fbbf24" strokeWidth="2.8" strokeLinecap="round" fill="none" />
-      <path d="M3,10 L9,19 L4,21" stroke="#fbbf24" strokeWidth="2.8" strokeLinecap="round" fill="none" />
-      {/* Body */}
-      <line x1="0" y1="-7" x2="0" y2="10" stroke="#fbbf24" strokeWidth="3.4" strokeLinecap="round" />
-      {/* Head */}
-      <circle cx="0" cy="-15" r="7" fill="#fbbf24" opacity="0.95" />
-      {/* Arms — wide for balance */}
-      <path d="M-1,-3 L-18,2" stroke="#fbbf24" strokeWidth="2.8" strokeLinecap="round" fill="none" />
-      <path d="M-1,-2 L16,-7" stroke="#fbbf24" strokeWidth="2.8" strokeLinecap="round" fill="none" />
-      {/* Wetsuit highlight */}
-      <line x1="0" y1="-4" x2="0" y2="5" stroke="rgba(255,255,255,0.22)" strokeWidth="1.4" strokeLinecap="round" />
-    </>
-  );
-}
-
-/* Surfer sitting in lineup */
-function SitterFigure() {
-  return (
-    <>
-      {/* Board flat */}
-      <ellipse cx="0" cy="10" rx="20" ry="4.5" fill="#60a5fa" opacity="0.88" />
-      {/* Legs dangling */}
-      <path d="M-6,12 L-14,22" stroke="#fbbf24" strokeWidth="2.6" strokeLinecap="round" fill="none" />
-      <path d="M6,12 L14,22" stroke="#fbbf24" strokeWidth="2.6" strokeLinecap="round" fill="none" />
-      {/* Body */}
-      <line x1="0" y1="-10" x2="0" y2="10" stroke="#fbbf24" strokeWidth="3.2" strokeLinecap="round" />
-      {/* Head */}
-      <circle cx="0" cy="-18" r="6.5" fill="#fbbf24" opacity="0.95" />
-      {/* Arms resting */}
-      <path d="M-1,-2 L-16,6" stroke="#fbbf24" strokeWidth="2.5" strokeLinecap="round" fill="none" />
-      <path d="M-1,-2 L15,4" stroke="#fbbf24" strokeWidth="2.5" strokeLinecap="round" fill="none" />
-    </>
-  );
-}
-
-/* Paddling figure */
-function PaddlerFigure() {
-  return (
-    <>
-      {/* Board */}
-      <ellipse cx="0" cy="8" rx="24" ry="4.5" fill="#60a5fa" opacity="0.88" />
-      {/* Body prone */}
-      <rect x="-6" y="2" width="12" height="8" rx="3" fill="#fbbf24" opacity="0.92" />
-      {/* Head up */}
-      <circle cx="0" cy="-4" r="6" fill="#fbbf24" opacity="0.95" />
-      {/* Arms paddling */}
-      <path d="M-5,6 Q-20,0 -24,8" stroke="#fbbf24" strokeWidth="2.8" strokeLinecap="round" fill="none" />
-      <path d="M5,6 Q20,0 24,8" stroke="#fbbf24" strokeWidth="2.8" strokeLinecap="round" fill="none" />
-    </>
-  );
-}
 
 export default function OceanBackground() {
   return (
-    <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
+    <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none select-none">
 
-      {/* ── SKY ───────────────────────────────────────────────────── */}
+      {/* ── BASE: white → very-pale-teal gradient ─────────────────── */}
       <div
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(180deg, #2a6db0 0%, #4a90cc 18%, #6bb4de 38%, #9acde8 58%, #bddff2 74%, #d4eef8 86%, #e4f5fc 100%)",
+            "linear-gradient(180deg, #ffffff 0%, #f4fffe 45%, #e8f8f6 75%, #d0f0ec 100%)",
         }}
       />
 
-      {/* Horizon warm glow */}
+      {/* Soft radial bloom top-right (light warmth) */}
       <div
         className="absolute"
         style={{
-          left: "58%",
-          top: "26%",
-          width: 380,
-          height: 140,
+          top: "-10%",
+          right: "-5%",
+          width: "55vw",
+          height: "55vw",
           borderRadius: "50%",
           background:
-            "radial-gradient(ellipse, rgba(255,235,160,0.35) 0%, rgba(255,215,80,0.12) 50%, transparent 75%)",
-          filter: "blur(22px)",
+            "radial-gradient(circle, rgba(244,200,224,0.28) 0%, rgba(232,160,200,0.10) 50%, transparent 75%)",
+          filter: "blur(48px)",
         }}
       />
 
-      {/* Sun */}
-      <div
-        className="absolute east-coast-sun"
-        style={{
-          width: 58,
-          height: 58,
-          left: "72%",
-          top: "7%",
-          borderRadius: "50%",
-          background:
-            "radial-gradient(circle, #fff9c4 25%, #ffe57a 55%, rgba(255,210,50,0) 100%)",
-          boxShadow:
-            "0 0 40px 16px rgba(255,230,80,0.30), 0 0 90px 40px rgba(255,200,50,0.10)",
-        }}
-      />
-
-      {/* Clouds */}
-      <div className="absolute east-cloud-a" style={{ left: "4%", top: "5%", opacity: 0.80 }}>
-        <Cloud w={200} />
-      </div>
-      <div className="absolute east-cloud-b" style={{ left: "24%", top: "2%", opacity: 0.62 }}>
-        <Cloud w={148} />
-      </div>
-      <div className="absolute east-cloud-c" style={{ left: "50%", top: "9%", opacity: 0.48 }}>
-        <Cloud w={118} />
-      </div>
-      <div className="absolute east-cloud-d" style={{ left: "76%", top: "4%", opacity: 0.35 }}>
-        <Cloud w={96} />
-      </div>
-
-      {/* ── MAIN SVG SCENE ─────────────────────────────────────────── */}
+      {/* ── MAIN SVG ILLUSTRATION ─────────────────────────────────── */}
       <svg
         className="absolute inset-0 w-full h-full"
         viewBox="0 0 1440 900"
@@ -147,361 +42,341 @@ export default function OceanBackground() {
         xmlns="http://www.w3.org/2000/svg"
       >
         <defs>
-          {/* ─ Gradients ─ */}
-          <linearGradient id="oceanDeep" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#1a607a" />
-            <stop offset="100%" stopColor="#0b3248" />
+          {/* ─ Wave blob gradient ─ */}
+          <radialGradient id="waveBlob" cx="48%" cy="50%" r="52%">
+            <stop offset="0%"   stopColor="#5DE0D4" />
+            <stop offset="55%"  stopColor="#3DCFC2" />
+            <stop offset="100%" stopColor="#2BBFB2" />
+          </radialGradient>
+
+          {/* ─ Teal water surface ─ */}
+          <linearGradient id="waterSurface" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%"   stopColor="#3DCFC2" stopOpacity="0.70" />
+            <stop offset="100%" stopColor="#1A9A8E" stopOpacity="0.95" />
           </linearGradient>
-          <linearGradient id="oceanShallow" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#2a9a88" stopOpacity="0.85" />
-            <stop offset="100%" stopColor="#196050" />
+
+          {/* ─ Pink foam ─ */}
+          <radialGradient id="pinkFoam" cx="50%" cy="50%" r="50%">
+            <stop offset="0%"   stopColor="#F4C8E0" />
+            <stop offset="60%"  stopColor="#E8A0C8" />
+            <stop offset="100%" stopColor="#D490B8" stopOpacity="0.6" />
+          </radialGradient>
+
+          {/* ─ Board gradient ─ */}
+          <linearGradient id="boardGrad" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%"   stopColor="#3D2060" />
+            <stop offset="100%" stopColor="#5A3A8A" />
           </linearGradient>
-          <linearGradient id="waveBodyGrad" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#1e84a0" stopOpacity="0.92" />
-            <stop offset="50%" stopColor="#10547a" stopOpacity="0.97" />
-            <stop offset="100%" stopColor="#061e34" />
+
+          {/* ─ Surfer body ─ */}
+          <linearGradient id="bodyGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%"   stopColor="#7B5EA7" />
+            <stop offset="100%" stopColor="#5A3E8A" />
           </linearGradient>
-          <linearGradient id="waveFaceL" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#3ec8d8" stopOpacity="0.58" />
-            <stop offset="100%" stopColor="#1890a8" stopOpacity="0.08" />
-          </linearGradient>
-          <linearGradient id="foamLeft" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stopColor="white" stopOpacity="0.88" />
-            <stop offset="60%" stopColor="white" stopOpacity="0.38" />
-            <stop offset="100%" stopColor="white" stopOpacity="0.04" />
-          </linearGradient>
-          <linearGradient id="foamRight" x1="1" y1="0" x2="0" y2="0">
-            <stop offset="0%" stopColor="white" stopOpacity="0.88" />
-            <stop offset="60%" stopColor="white" stopOpacity="0.38" />
-            <stop offset="100%" stopColor="white" stopOpacity="0.04" />
-          </linearGradient>
-          <linearGradient id="foamCenter" x1="0.5" y1="0" x2="0.5" y2="1">
-            <stop offset="0%" stopColor="white" stopOpacity="0.92" />
-            <stop offset="100%" stopColor="white" stopOpacity="0.06" />
-          </linearGradient>
-          <linearGradient id="boardShine" x1="-22" y1="0" x2="22" y2="0" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stopColor="white" stopOpacity="0" />
-            <stop offset="50%" stopColor="white" stopOpacity="1" />
-            <stop offset="100%" stopColor="white" stopOpacity="0" />
-          </linearGradient>
-          {/* Water reflection shimmer */}
-          <linearGradient id="shimmerH" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stopColor="rgba(255,255,255,0)" />
-            <stop offset="45%" stopColor="rgba(255,255,255,0.08)" />
-            <stop offset="55%" stopColor="rgba(255,255,255,0.14)" />
-            <stop offset="100%" stopColor="rgba(255,255,255,0)" />
-          </linearGradient>
+
+          {/* Wave inner glow */}
+          <filter id="softBloom" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="18" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+
+          {/* Drop shadow for surfer */}
+          <filter id="surferShadow" x="-30%" y="-10%" width="160%" height="130%">
+            <feDropShadow dx="8" dy="10" stdDeviation="12"
+              floodColor="#1A9A8E" floodOpacity="0.30" />
+          </filter>
         </defs>
 
-        {/* ── OCEAN BASE ───────────────────────────────────────────── */}
-        <rect x="0" y="410" width="1440" height="490" fill="url(#oceanDeep)" />
-
-        {/* Horizon haze line */}
-        <rect x="0" y="408" width="1440" height="18" fill="rgba(180,225,245,0.28)" />
-
-        {/* Water sun reflection path */}
+        {/* ══════════════════════════════════════════════════════════════
+            TEAL WATER SURFACE — fills the lower third
+        ══════════════════════════════════════════════════════════════ */}
         <path
-          d="M820,420 C900,418 980,422 1060,418 C1100,416 1120,420 1060,425 C980,432 900,430 820,428 Z"
-          fill="rgba(255,245,180,0.18)"
+          d="M0,680 Q180,650 360,668 Q540,686 720,660 Q900,634 1080,658 Q1260,682 1440,650
+             L1440,900 L0,900 Z"
+          fill="url(#waterSurface)"
+        />
+        {/* Second layer — lighter ripple */}
+        <path
+          d="M0,700 Q180,678 360,692 Q540,706 720,684 Q900,662 1080,682 Q1260,702 1440,674
+             L1440,900 L0,900 Z"
+          fill="rgba(61,207,194,0.35)"
+        />
+        {/* Foam line on water */}
+        <path
+          d="M0,680 Q180,650 360,668 Q540,686 720,660 Q900,634 1080,658 Q1260,682 1440,650"
+          stroke="rgba(255,255,255,0.70)"
+          strokeWidth="3"
+          fill="none"
         />
 
-        {/* ── BACKGROUND SWELL LINES (rolling, give depth) ─────────── */}
-        <g className="east-swell-drift" opacity="0.55">
-          {/* 4 thin lines across the horizon area, slight curvature */}
-          <path d="M0,445 Q360,438 720,444 Q1080,450 1440,443" stroke="rgba(200,240,255,0.35)" strokeWidth="1.2" fill="none" />
-          <path d="M0,468 Q360,460 720,466 Q1080,472 1440,465" stroke="rgba(200,240,255,0.30)" strokeWidth="1.0" fill="none" />
-          <path d="M0,490 Q360,482 720,488 Q1080,494 1440,486" stroke="rgba(200,240,255,0.24)" strokeWidth="0.9" fill="none" />
-          <path d="M0,512 Q360,504 720,510 Q1080,516 1440,508" stroke="rgba(200,240,255,0.18)" strokeWidth="0.8" fill="none" />
-          <path d="M0,534 Q360,526 720,532 Q1080,538 1440,530" stroke="rgba(200,240,255,0.14)" strokeWidth="0.7" fill="none" />
-        </g>
-
-        {/* ─────────────────────────────────────────────────────────────
-            LINEUP SURFERS — 4 small figures in the back, bobbing
-            All sitting on boards, waiting for the next set
-            Scale ≈ 0.36 (very far away)
-        ───────────────────────────────────────────────────────────── */}
-        {/* Surfer A — far left of lineup */}
-        <g transform="translate(480,516) scale(0.34)" className="east-bob-a" opacity="0.72">
-          <SitterFigure />
-        </g>
-        {/* Surfer B */}
-        <g transform="translate(560,510) scale(0.32)" className="east-bob-b" opacity="0.68">
-          <SitterFigure />
-        </g>
-        {/* Surfer C */}
-        <g transform="translate(650,508) scale(0.34)" className="east-bob-c" opacity="0.70">
-          <SitterFigure />
-        </g>
-        {/* Surfer D — paddler in from outside */}
-        <g transform="translate(750,514) scale(0.30)" className="east-bob-b" opacity="0.60">
-          <PaddlerFigure />
-        </g>
-        {/* Surfer E — far right lineup */}
-        <g transform="translate(840,512) scale(0.32)" className="east-bob-a" opacity="0.62">
-          <SitterFigure />
-        </g>
-
-        {/* ═══════════════════════════════════════════════════════════
-            THREE SIMULTANEOUS WAVE PEAKS
-            Classic east-coast beach-break: multiple peaks at once
-            ═══════════════════════════════════════════════════════ */}
-
-        {/* ── WAVE 1 — LEFT PEAK (x 0–560) breaking leftward ───────── */}
-        <g className="east-wave-left">
-          {/* Main body */}
+        {/* ══════════════════════════════════════════════════════════════
+            MAIN WAVE BLOB — large organic circular shape
+            Positioned centre-left, the "barrel" behind the surfer
+        ══════════════════════════════════════════════════════════════ */}
+        <g className="wave-blob-breathe" style={{ transformOrigin: "560px 500px" }}>
           <path
-            d="M0,900 L0,640
-               C 60,610  120,585  190,568
-               C 240,556  288,548  330,538
-               C 360,530  380,520  388,506
-               C 396,490  394,474  384,460
-               C 372,444  354,434  330,430
-               C 306,426  282,432  264,448
-               C 246,464  244,486  258,508
-               C 272,530  300,546  338,554
-               C 374,562  416,558  460,546
-               C 510,532  552,508  578,480
-               L578,900 Z"
-            fill="url(#waveBodyGrad)"
-            opacity="0.93"
-          />
-          {/* Glassy face */}
-          <path
-            d="M334,430 C342,410 360,396 382,392 C406,388 428,398 440,420
-               C452,442 448,468 432,484 C416,500 392,502 372,492
-               C352,482 342,462 348,444 Z"
-            fill="rgba(45,180,200,0.32)"
-          />
-          {/* Crest lip */}
-          <path
-            d="M0,640 C90,610 180,582 268,558 C320,543 365,530 395,514
-               C432,495 452,472 444,448 C432,420 402,408 370,414
-               C338,420 316,442 318,468"
-            stroke="rgba(255,255,255,0.52)"
-            strokeWidth="2.5"
-            fill="none"
-          />
-          {/* Foam breaking left */}
-          <path
-            d="M0,640 C60,618 120,604 190,596 C235,590 272,588 296,592
-               C264,602 218,610 162,616 C102,622 44,622 0,618 Z"
-            fill="url(#foamLeft)"
-          />
-          <path
-            d="M0,660 C48,646 106,638 168,637 C216,636 250,640 268,648
-               C235,657 190,661 136,663 C84,665 34,660 0,657 Z"
-            fill="rgba(255,255,255,0.42)"
-          />
-          <path
-            d="M0,680 C34,668 78,662 126,661 C162,661 186,665 198,672
-               C170,679 132,682 88,682 C52,682 18,679 0,677 Z"
-            fill="rgba(255,255,255,0.28)"
-          />
-        </g>
-
-        {/* ── WAVE 2 — CENTRE PEAK (x 420–1020) the big one ─────────── */}
-        <g className="east-wave-centre">
-          {/* Main body */}
-          <path
-            d="M420,900 L420,580
-               C 480,562  540,546  600,530
-               C 645,518  685,506  714,490
-               C 738,476  748,460  744,440
-               C 738,418  720,402  696,394
-               C 670,386  642,390  622,406
-               C 600,424  592,450  602,476
-               C 612,502  638,522  674,534
-               C 710,546  752,548  796,540
-               C 844,530  892,508  936,480
-               C 970,456  996,430  1006,402
-               C 1016,374  1006,348  984,330
-               C 960,312  928,308  896,318
-               C 862,330  840,354  836,382
-               C 832,410  846,438  872,454
-               C 898,470  934,476  972,472
-               C 1004,468  1030,454  1046,432
-               L1046,900 Z"
-            fill="url(#waveBodyGrad)"
-            opacity="0.95"
-          />
-          {/* Glassy face right of peak */}
-          <path
-            d="M710,390 L710,490 C752,472 798,458 840,450
-               C 888,442 934,444 972,452 C1004,459 1024,468 1034,480
-               L1034,900 L710,900 Z"
-            fill="rgba(18,100,130,0.38)"
-          />
-          {/* Inner sunlit green */}
-          <path
-            d="M840,380 L840,450 C888,442 934,444 972,452
-               C1004,459 1028,470 1046,485 L1046,900 L840,900 Z"
-            fill="rgba(30,140,120,0.18)"
-          />
-          {/* Crest highlight */}
-          <path
-            d="M420,580 C480,560 542,540 606,520 C658,504 702,488 732,468
-               C758,450 770,428 762,404 C752,378 728,360 700,354
-               C670,348 640,358 622,378 C602,400 598,428 610,452
-               C622,476 646,492 678,500"
-            stroke="rgba(255,255,255,0.55)"
-            strokeWidth="2.8"
-            fill="none"
-          />
-          {/* Peak spray */}
-          {[
-            {cx:696,cy:348,r:5,dur:"2.1s",delay:"0s"},
-            {cx:722,cy:338,r:3.6,dur:"2.6s",delay:"0.4s"},
-            {cx:748,cy:342,r:4.2,dur:"1.9s",delay:"0.8s"},
-            {cx:774,cy:336,r:3.0,dur:"2.4s",delay:"1.2s"},
-            {cx:800,cy:332,r:3.8,dur:"2.8s",delay:"0.6s"},
-            {cx:668,cy:356,r:2.8,dur:"2.0s",delay:"1.5s"},
-          ].map((s, i) => (
-            <circle
-              key={i}
-              className="east-spray"
-              cx={s.cx} cy={s.cy} r={s.r}
-              fill="rgba(255,255,255,0.72)"
-              style={{"--sdur":s.dur,"--sdelay":s.delay} as React.CSSProperties}
-            />
-          ))}
-          {/* Foam at base of wave */}
-          <path
-            d="M420,580 C480,566 540,558 610,552 C654,548 690,548 710,554
-               C678,564 634,570 578,574 C510,578 456,574 420,568 Z"
-            fill="rgba(255,255,255,0.38)"
-          />
-        </g>
-
-        {/* ── WAVE 3 — RIGHT SECTION (x 880–1440) ─────────────────── */}
-        <g className="east-wave-right">
-          {/* Main body */}
-          <path
-            d="M900,900 L900,520
-               C 950,508  998,496  1044,482
-               C 1082,470  1114,456  1136,440
-               C 1156,424  1162,406  1152,390
-               C 1140,374  1118,366  1092,368
-               C 1064,370  1042,384  1032,406
-               C 1022,428  1028,452  1046,468
-               C 1064,484  1092,492  1126,492
-               C 1160,492  1200,480  1240,460
-               C 1290,436  1340,404  1380,372
-               C 1404,354  1424,336  1440,320
-               L1440,900 Z"
-            fill="url(#waveBodyGrad)"
+            d="
+              M 340,300
+              C 270,270  220,320  200,390
+              C 180,460  210,530  260,580
+              C 310,630  380,650  450,640
+              C 530,628  600,590  640,540
+              C 680,490  690,430  670,375
+              C 650,318  600,280  545,268
+              C 490,256  420,262  380,280
+              C 360,290  348,295  340,300 Z
+            "
+            fill="url(#waveBlob)"
             opacity="0.90"
           />
-          {/* Glassy face */}
+          {/* Inner lighter arc — the glassy face */}
           <path
-            d="M1092,366 C1100,346 1118,334 1138,332 C1160,330 1178,342 1184,362
-               C1190,382 1180,404 1162,414 C1144,424 1122,418 1110,400 Z"
-            fill="rgba(40,170,190,0.28)"
+            d="
+              M 360,320
+              C 310,300  275,345  265,405
+              C 255,465  285,525  330,560
+              C 375,595  435,605  490,588
+              C 545,570  588,535  608,488
+              C 628,440  620,388  592,346
+              C 564,304  522,286  478,284
+              C 440,282  390,296  360,320 Z
+            "
+            fill="rgba(100,235,228,0.35)"
           />
-          {/* Crest */}
+          {/* Wave highlight arc (top-left rim) */}
           <path
-            d="M900,520 C960,504 1018,488 1072,468 C1108,454 1136,436 1150,414
-               C1162,394 1158,372 1140,358"
-            stroke="rgba(255,255,255,0.46)"
-            strokeWidth="2.2"
+            d="M 355,308 C 300,290 250,340 238,400 C 232,430 238,460 252,486"
+            stroke="rgba(255,255,255,0.55)"
+            strokeWidth="6"
+            strokeLinecap="round"
             fill="none"
           />
-          {/* Foam right */}
+          {/* Wave crest foam — top of the blob */}
           <path
-            d="M1440,320 C1412,342 1372,368 1330,390 C1296,408 1268,418 1252,420
-               C1280,408 1322,390 1360,368 C1398,346 1426,322 1440,308 Z"
-            fill="url(#foamRight)"
+            d="M 340,300 C 380,268 440,254 500,256 C 540,258 572,270 596,286"
+            stroke="rgba(255,255,255,0.72)"
+            strokeWidth="10"
+            strokeLinecap="round"
+            fill="none"
           />
         </g>
 
-        {/* ═══════════════════════════════════════════════════════════
-            SURFERS ON THE WAVES
-            Scale increases as they get closer (3D depth)
-        ═══════════════════════════════════════════════════════════ */}
-
-        {/* Rider 1 — on left wave face, mid-distance (scale 0.60) */}
-        <g transform="translate(305,504) scale(0.58)" className="east-ride-a" opacity="0.88">
-          <RiderFigure />
+        {/* ══════════════════════════════════════════════════════════════
+            PINK FOAM SPLASH — upper right of wave
+            Three organic blob shapes + smaller droplets
+        ══════════════════════════════════════════════════════════════ */}
+        <g className="foam-sway" style={{ transformOrigin: "750px 280px" }}>
+          {/* Main pink blob */}
+          <path
+            d="
+              M 680,240
+              C 700,200  740,185  780,195
+              C 820,205  848,235  852,270
+              C 856,305  836,335  808,345
+              C 780,355  748,342  730,318
+              C 712,294  700,268  700,250
+              C 698,244  688,248  680,240 Z
+            "
+            fill="url(#pinkFoam)"
+            opacity="0.88"
+          />
+          {/* Second smaller blob */}
+          <path
+            d="
+              M 820,175
+              C 836,152  862,148  882,162
+              C 902,176  908,202  896,220
+              C 884,238  860,242  842,228
+              C 824,214  818,190  820,175 Z
+            "
+            fill="#E8A0C8"
+            opacity="0.80"
+          />
+          {/* Third tiny blob */}
+          <path
+            d="
+              M 900,220
+              C 908,208  922,206  932,214
+              C 942,222  944,236  936,244
+              C 928,252  916,250  908,242
+              C 900,234  898,226  900,220 Z
+            "
+            fill="#F4C8E0"
+            opacity="0.75"
+          />
+          {/* Droplets */}
+          <circle cx="860" cy="155" r="9"  fill="#E8A0C8" opacity="0.65" />
+          <circle cx="890" cy="140" r="6"  fill="#F0B8D4" opacity="0.55" />
+          <circle cx="924" cy="178" r="7"  fill="#E8A0C8" opacity="0.60" />
+          <circle cx="948" cy="205" r="5"  fill="#EAB8D8" opacity="0.50" />
+          <circle cx="912" cy="252" r="4"  fill="#E8A0C8" opacity="0.48" />
+          <circle cx="868" cy="130" r="4"  fill="#F0C0DC" opacity="0.45" />
         </g>
 
-        {/* Rider 2 — on centre wave face, dropping in (scale 0.68) */}
-        <g transform="translate(648,480) scale(0.66)" className="east-ride-b" opacity="0.90">
-          <RiderFigure />
+        {/* ══════════════════════════════════════════════════════════════
+            SURFER FIGURE — stylised flat illustration
+            Purple/violet body, white swimsuit, dark board with shadow
+        ══════════════════════════════════════════════════════════════ */}
+        <g
+          className="surfer-float"
+          style={{ transformOrigin: "480px 540px" }}
+          filter="url(#surferShadow)"
+        >
+          {/* Board shadow on water */}
+          <ellipse cx="490" cy="618" rx="96" ry="12"
+            fill="rgba(58,28,100,0.22)" />
+
+          {/* Surfboard */}
+          <path
+            d="M 380,600 Q 410,578 490,568 Q 570,558 600,576 Q 590,610 490,618 Q 390,618 380,600 Z"
+            fill="url(#boardGrad)"
+          />
+          {/* Board nose highlight */}
+          <path
+            d="M 590,576 Q 598,590 592,606"
+            stroke="rgba(255,255,255,0.25)"
+            strokeWidth="3"
+            fill="none"
+            strokeLinecap="round"
+          />
+
+          {/* ─ Back leg ─ */}
+          <path
+            d="M 504,574 L 510,596 L 530,600"
+            stroke="url(#bodyGrad)"
+            strokeWidth="14"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            fill="none"
+          />
+          {/* ─ Front leg ─ */}
+          <path
+            d="M 476,564 L 462,586 L 448,592"
+            stroke="url(#bodyGrad)"
+            strokeWidth="14"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            fill="none"
+          />
+
+          {/* ─ Torso (white swimsuit) ─ */}
+          <path
+            d="M 464,522 C 460,508 462,492 472,484 C 482,476 500,476 510,484
+               C 520,492 522,508 516,524 C 508,538 470,538 464,522 Z"
+            fill="white"
+          />
+
+          {/* ─ Body top (shoulders & neck — purple) ─ */}
+          <path
+            d="M 468,478 C 462,468 462,456 472,450 C 482,444 502,444 510,450
+               C 518,456 518,468 512,478"
+            fill="#7B5EA7"
+          />
+
+          {/* ─ Head ─ */}
+          <ellipse cx="490" cy="440" rx="22" ry="24" fill="#6A4490" />
+
+          {/* ─ Hair flowing back ─ */}
+          <path
+            d="M 475,428 C 455,418 432,412 418,420 C 405,428 406,448 418,456
+               C 430,462 448,458 462,446 C 472,436 476,430 475,428 Z"
+            fill="#2C1A40"
+          />
+          <path
+            d="M 475,428 C 468,416 455,408 444,412 C 435,416 432,426 436,434"
+            stroke="#2C1A40"
+            strokeWidth="8"
+            strokeLinecap="round"
+            fill="none"
+          />
+
+          {/* ─ Face highlights ─ */}
+          <ellipse cx="498" cy="438" rx="3" ry="4" fill="rgba(255,255,255,0.30)" />
+          {/* Smile */}
+          <path d="M 484,448 Q 490,453 496,448"
+            stroke="rgba(255,255,255,0.50)"
+            strokeWidth="2"
+            strokeLinecap="round"
+            fill="none"
+          />
+
+          {/* ─ Back arm (behind body) ─ */}
+          <path
+            d="M 512,500 L 544,488 L 558,475"
+            stroke="#5A3E8A"
+            strokeWidth="13"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            fill="none"
+          />
+
+          {/* ─ Front arm (pointing forward) ─ */}
+          <path
+            d="M 468,500 L 436,488 L 418,476"
+            stroke="url(#bodyGrad)"
+            strokeWidth="13"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            fill="none"
+          />
+
+          {/* ─ White suit body fill (over legs) ─ */}
+          <path
+            d="M 468,520 L 470,560 L 508,564 L 514,522 Z"
+            fill="white"
+            opacity="0.92"
+          />
         </g>
 
-        {/* Rider 3 — on right wave, closest to peak (scale 0.56) */}
-        <g transform="translate(1044,456) scale(0.54)" className="east-ride-c" opacity="0.84">
-          <RiderFigure />
-        </g>
+        {/* ══════════════════════════════════════════════════════════════
+            WATER SPARKLES / LIGHT REFLECTIONS
+        ══════════════════════════════════════════════════════════════ */}
+        {[
+          {cx: 180, cy: 720, rx: 28, ry: 4},
+          {cx: 320, cy: 740, rx: 18, ry: 3},
+          {cx: 600, cy: 710, rx: 22, ry: 4},
+          {cx: 800, cy: 730, rx: 30, ry: 5},
+          {cx: 1050,cy: 715, rx: 20, ry: 3},
+          {cx: 1250,cy: 735, rx: 25, ry: 4},
+        ].map((s, i) => (
+          <ellipse
+            key={i}
+            cx={s.cx} cy={s.cy} rx={s.rx} ry={s.ry}
+            fill="rgba(255,255,255,0.38)"
+            className="shimmer-sparkle"
+            style={{ animationDelay: `${i * 0.4}s` } as React.CSSProperties}
+          />
+        ))}
 
-        {/* Paddler — heading out through the whitewater (scale 0.74) */}
-        <g transform="translate(178,628) scale(0.72)" className="east-bob-c" opacity="0.78">
-          <PaddlerFigure />
-        </g>
-
-        {/* ── FOREGROUND WHITEWATER — rushes toward viewer ──────────── */}
-        {/* Shallow water green tint */}
-        <path
-          d="M0,720 Q360,706 720,712 Q1080,718 1440,708 L1440,900 L0,900 Z"
-          fill="rgba(28,100,80,0.40)"
-        />
-        {/* White foam bands */}
-        <path
-          className="east-foam-pulse"
-          d="M0,730 Q180,718 360,724 Q540,730 720,722 Q900,714 1080,720 Q1260,726 1440,716
-             L1440,760 Q1260,768 1080,762 Q900,756 720,764 Q540,772 360,764 Q180,756 0,764 Z"
-          fill="rgba(255,255,255,0.52)"
-        />
-        <path
-          className="east-foam-pulse-2"
-          d="M0,772 Q180,764 360,770 Q540,776 720,768 Q900,760 1080,766 Q1260,772 1440,762
-             L1440,795 Q1260,800 1080,796 Q900,790 720,798 Q540,806 360,800 Q180,794 0,800 Z"
-          fill="rgba(255,255,255,0.36)"
-        />
-        <path
-          d="M0,808 Q360,800 720,806 Q1080,812 1440,802 L1440,900 L0,900 Z"
-          fill="rgba(255,255,255,0.20)"
-        />
-        <path
-          d="M0,838 Q360,832 720,837 Q1080,842 1440,834 L1440,900 L0,900 Z"
-          fill="rgba(255,255,255,0.12)"
-        />
-        <path
-          d="M0,864 Q360,860 720,863 Q1080,866 1440,860 L1440,900 L0,900 Z"
-          fill="rgba(255,255,255,0.07)"
-        />
-
-        {/* Water shimmer reflections */}
-        <path
-          d="M200,510 Q280,504 340,510"
-          stroke="rgba(255,255,255,0.14)"
-          strokeWidth="1.2"
-          fill="none"
-        />
-        <path
-          d="M860,470 Q940,464 1010,470"
-          stroke="rgba(255,255,255,0.12)"
-          strokeWidth="1.0"
-          fill="none"
-        />
-        <path
-          d="M1180,440 Q1240,435 1290,440"
-          stroke="rgba(255,255,255,0.10)"
-          strokeWidth="0.9"
-          fill="none"
-        />
-
-        {/* Bottom depth fade */}
-        <rect x="0" y="840" width="1440" height="60"
-          fill="url(#deepWater)"
-          opacity="0.7"
-        />
+        {/* Small teal circles (secondary foam dots around wave) */}
+        {[
+          {cx:300,cy:308,r:8,o:0.40},
+          {cx:254,cy:410,r:6,o:0.30},
+          {cx:230,cy:490,r:7,o:0.35},
+          {cx:635,cy:280,r:9,o:0.38},
+          {cx:660,cy:350,r:6,o:0.30},
+          {cx:625,cy:460,r:5,o:0.25},
+        ].map((d, i) => (
+          <circle
+            key={i}
+            cx={d.cx} cy={d.cy} r={d.r}
+            fill="#3DCFC2"
+            opacity={d.o}
+            className="dot-drift"
+            style={{ animationDelay: `${i * 0.55}s` } as React.CSSProperties}
+          />
+        ))}
       </svg>
 
-      {/* ── BOTTOM VIGNETTE ─────────────────────────────────────────── */}
+      {/* ── Bottom fade: ensures footer text is legible ─────────── */}
       <div
-        className="absolute bottom-0 left-0 right-0 h-20"
+        className="absolute bottom-0 left-0 right-0 h-24 pointer-events-none"
         style={{
-          background: "linear-gradient(to top, rgba(4,18,34,0.60), transparent)",
+          background:
+            "linear-gradient(to top, rgba(26,154,142,0.08), transparent)",
         }}
       />
     </div>
