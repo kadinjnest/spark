@@ -12,6 +12,7 @@ interface MemoryResult {
   narrative: string;
   imageUrl?: string;
   videoUrl?: string;
+  videoError?: string;
   createdAt: string;
 }
 

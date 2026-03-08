@@ -8,6 +8,7 @@ interface MemoryResult {
   narrative: string;
   imageUrl?: string;
   videoUrl?: string;
+  videoError?: string;
   createdAt: string;
 }
 
@@ -257,6 +258,17 @@ export default function MemoryVideoPlayer({ memory, onReset }: Props) {
             )}
           </div>
         </div>
+
+        {/* Video generation error banner */}
+        {memory.videoError && !memory.videoUrl && (
+          <div className="mx-6 mb-2 flex items-start gap-2 bg-red-500/10 border border-red-500/20 rounded-xl px-4 py-3">
+            <span className="text-lg leading-none">⚠️</span>
+            <div>
+              <p className="text-red-300 text-xs font-medium mb-0.5">Video generation failed — showing photo instead</p>
+              <p className="text-red-400/60 text-xs break-all">{memory.videoError}</p>
+            </div>
+          </div>
+        )}
 
         {/* Controls */}
         <div className="px-6 pb-6 md:px-8 md:pb-8 flex flex-wrap gap-3 border-t border-white/5 pt-5">

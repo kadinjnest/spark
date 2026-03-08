@@ -25,16 +25,16 @@ async function generateVideoFromImage(
   imageBase64: string,
   title: string,
   videoPrompt?: string
-): Promise<string | null> {
+): Promise<{ url: string | null; error?: string }> {
   const apiKey = process.env.RUNWAY_API_KEY;
-  if (!apiKey) return null;
+  if (!apiKey) return { url: null, error: "RUNWAY_API_KEY is not set" };
 
   try {
     const prompt = videoPrompt
       ? `${videoPrompt}. Cinematic quality, smooth motion, photorealistic.`
       : `${title}. A cinematic memory coming alive — gentle, natural movement, people moving naturally, soft atmospheric animation, warm and nostalgic feeling.`;
 
-    // Preserve the full data URI (including correct MIME type) for Runway
+    // Ensure the image is sent as a proper data URI
     const promptImage = imageBase64.startsWith("data:")
       ? imageBase64
       : `data:image/jpeg;base64,${imageBase64}`;
@@ -59,11 +59,17 @@ async function generateVideoFromImage(
     );
 
     if (!startRes.ok) {
-      console.error("Runway start failed:", await startRes.text());
-      return null;
+      const errText = await startRes.text();
+      console.error("Runway start failed:", startRes.status, errText);
+      return { url: null, error: `Runway API error ${startRes.status}: ${errText}` };
     }
 
-    const { id: taskId } = await startRes.json();
+    const startData = await startRes.json();
+    const taskId = startData.id;
+    if (!taskId) {
+      console.error("Runway returned no task id:", startData);
+      return { url: null, error: `Runway returned no task id: ${JSON.stringify(startData)}` };
+    }
 
     // Poll every 5 seconds, up to 3 minutes
     for (let i = 0; i < 36; i++) {
@@ -79,27 +85,39 @@ async function generateVideoFromImage(
         }
       );
 
-      if (!pollRes.ok) continue;
+      if (!pollRes.ok) {
+        console.error("Runway poll error:", pollRes.status, await pollRes.text());
+        continue;
+      }
 
       const task = await pollRes.json();
+      console.log(`Runway task ${taskId} status:`, task.status);
 
       if (task.status === "SUCCEEDED" && task.output?.[0]) {
-        return task.output[0] as string;
+        return { url: task.output[0] as string };
       }
       if (task.status === "FAILED") {
         console.error("Runway task failed:", task);
-        return null;
+        return { url: null, error: `Runway task failed: ${JSON.stringify(task.failure ?? task.error ?? task)}` };
       }
     }
+
+    return { url: null, error: "Runway video generation timed out after 3 minutes" };
   } catch (err) {
     console.error("Video generation error:", err);
+    return { url: null, error: String(err) };
   }
-
-  return null;
 }
 
 export async function POST(req: NextRequest) {
-  const body = await req.json().catch(() => ({}));
+  let body: Record<string, unknown>;
+  try {
+    body = await req.json();
+  } catch (err) {
+    console.error("Failed to parse request body:", err);
+    return NextResponse.json({ error: "Invalid request body" }, { status: 400 });
+  }
+
   const title = (body.title as string) || "A Beautiful Memory";
   const description = (body.description as string) || title;
   const imageBase64 = body.imageBase64 as string | undefined;
@@ -109,13 +127,14 @@ export async function POST(req: NextRequest) {
 
   // Attempt video generation if an image was provided
   let videoUrl: string | undefined;
+  let videoError: string | undefined;
   if (imageBase64) {
-    const generated = await generateVideoFromImage(imageBase64, title, videoPrompt);
-    videoUrl = generated ?? undefined;
-  }
-
-  // Fallback minimum delay when no video generation runs (text-only memories)
-  if (!imageBase64) {
+    const result = await generateVideoFromImage(imageBase64, title, videoPrompt);
+    videoUrl = result.url ?? undefined;
+    videoError = result.error;
+    if (videoError) console.error("Video generation failed:", videoError);
+  } else {
+    // Fallback minimum delay for text-only memories
     await new Promise((r) => setTimeout(r, 3200));
   }
 
@@ -124,6 +143,7 @@ export async function POST(req: NextRequest) {
     title,
     narrative,
     videoUrl,
+    videoError,
     createdAt: new Date().toISOString(),
   });
 }
