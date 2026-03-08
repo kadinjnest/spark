@@ -131,41 +131,71 @@ html, body {
   animation: border-wave 8s ease-in-out infinite;
 }
 
-/* ─── Surfer action sequence (22s loop) ─────────────────────── */
-/*  0-18%  → riding down the wave face                          */
-/* 18-45%  → entering & inside the barrel                       */
-/* 45-58%  → exiting barrel, setting up aerial                  */
-/* 58-66%  → launching up the lip                               */
-/* 66-75%  → backflip (full 360° rotation at peak)              */
-/* 75-83%  → landing back on the wave                           */
-/* 83-100% → prone paddle-out back to peak                      */
+/* ─── Surfer action sequence (28s loop) ─────────────────────── */
+/*  Surfer starts on the RIGHT (open face) and carves LEFT       */
+/*   0- 8%  → open-face stance, first bottom turn               */
+/*   8-22%  → cutback / off-the-top turn 1                      */
+/*  22-36%  → drive back down, bottom turn 2                    */
+/*  36-50%  → ripping back up, snap at the lip                  */
+/*  50-60%  → loading for aerial / launching up the lip         */
+/*  60-70%  → full backflip (360° rotation at peak)             */
+/*  70-77%  → landing                                           */
+/*  77-100% → prone paddle-out back to peak (right side)        */
 @keyframes surfer-sequence {
-  0%   { transform: translate(0px,   0px)   rotate(-8deg);                    opacity: 0.82; }
-  18%  { transform: translate(-95px, 16px)  rotate(5deg);                     opacity: 0.90; }
-  32%  { transform: translate(-138px, 6px)  rotate(-4deg);                    opacity: 0.90; }
-  45%  { transform: translate(-168px, -3px) rotate(-9deg);                    opacity: 0.88; }
-  54%  { transform: translate(-176px,-12px) rotate(-15deg);                   opacity: 0.93; }
-  60%  { transform: translate(-172px,-60px) rotate(-24deg);                   opacity: 0.97; }
-  66%  { transform: translate(-167px,-85px) rotate(-184deg);                  opacity: 1.00; }
-  73%  { transform: translate(-160px,-54px) rotate(-364deg);                  opacity: 1.00; }
-  81%  { transform: translate(-148px, 10px) rotate(-7deg);                    opacity: 0.90; }
-  87%  { transform: translate(-88px,  12px) rotate(80deg)  scaleX(1.25) scaleY(0.55); opacity: 0.62; }
-  96%  { transform: translate(-18px,   6px) rotate(80deg)  scaleX(1.25) scaleY(0.55); opacity: 0.58; }
-  100% { transform: translate(0px,   0px)   rotate(-8deg);                    opacity: 0.82; }
+  0%   { transform: translate(205px,   0px) rotate(-10deg);                     opacity: 0.84; }
+
+  /* — TURN 1: bottom turn (carve toward trough) — */
+  8%   { transform: translate(155px,  42px) rotate( 22deg);                     opacity: 0.90; }
+  /* — back up the face (cutback) — */
+  15%  { transform: translate( 95px, -22px) rotate(-26deg);                     opacity: 0.92; }
+
+  /* — TURN 2: drive back to the bottom — */
+  22%  { transform: translate( 38px,  40px) rotate( 20deg);                     opacity: 0.90; }
+  /* — snap off the top — */
+  29%  { transform: translate(-22px, -16px) rotate(-21deg);                     opacity: 0.92; }
+
+  /* — TURN 3: bottom turn 3 (tighter, more spray) — */
+  36%  { transform: translate(-75px,  44px) rotate( 23deg);                     opacity: 0.90; }
+  /* — ripping snap at the lip — */
+  43%  { transform: translate(-128px,-25px) rotate(-25deg);                     opacity: 0.93; }
+
+  /* — Loading aerial: drive up the face hard — */
+  50%  { transform: translate(-158px,-55px) rotate(-33deg);                     opacity: 0.96; }
+
+  /* — LAUNCH — */
+  57%  { transform: translate(-172px,-92px) rotate(-38deg);                     opacity: 0.98; }
+
+  /* — BACKFLIP APEX — */
+  63%  { transform: translate(-186px,-105px) rotate(-198deg);                   opacity: 1.00; }
+
+  /* — BACKFLIP COMPLETION — */
+  70%  { transform: translate(-198px, -58px) rotate(-388deg);                   opacity: 1.00; }
+
+  /* — LANDING — */
+  77%  { transform: translate(-206px,  18px) rotate(  -8deg);                   opacity: 0.88; }
+
+  /* — GO PRONE / paddle-out begins — */
+  82%  { transform: translate(-192px,  22px) rotate( 82deg) scaleX(1.30) scaleY(0.52); opacity: 0.60; }
+
+  /* — PADDLING RIGHT — */
+  93%  { transform: translate(  25px,  13px) rotate( 82deg) scaleX(1.30) scaleY(0.52); opacity: 0.58; }
+
+  /* — BACK AT START — */
+  100% { transform: translate( 205px,   0px) rotate(-10deg);                    opacity: 0.84; }
 }
 
 @keyframes big-wave-breathe {
   0%, 100% { transform: translateY(0px);  }
-  50%       { transform: translateY(-6px); }
+  50%       { transform: translateY(-7px); }
 }
 
 @keyframes spray-drift {
-  0%   { transform: translate(0,    0)    scale(1);   opacity: 0.75; }
-  100% { transform: translate(-16px,-30px) scale(0.3); opacity: 0;    }
+  0%   { transform: translate(0,     0)    scale(1);   opacity: 0.76; }
+  100% { transform: translate(-18px,-34px) scale(0.3); opacity: 0;    }
 }
 
 .surfer-animated {
-  animation: surfer-sequence 22s cubic-bezier(0.4,0,0.6,1) infinite;
+  animation: surfer-sequence 28s cubic-bezier(0.4,0,0.6,1) infinite;
 }
 
 .big-wave-animated {

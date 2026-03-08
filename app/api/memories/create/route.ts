@@ -40,7 +40,7 @@ async function generateVideoFromImage(
       : `data:image/jpeg;base64,${imageBase64}`;
 
     const startRes = await fetch(
-      "https://api.dev.runwayml.com/v1/image_to_video",
+      "https://api.runwayml.com/v1/image_to_video",
       {
         method: "POST",
         headers: {
@@ -70,7 +70,7 @@ async function generateVideoFromImage(
       await new Promise((r) => setTimeout(r, 5000));
 
       const pollRes = await fetch(
-        `https://api.dev.runwayml.com/v1/tasks/${taskId}`,
+        `https://api.runwayml.com/v1/tasks/${taskId}`,
         {
           headers: {
             Authorization: `Bearer ${apiKey}`,
