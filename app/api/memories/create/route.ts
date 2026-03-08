@@ -1,5 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 
+// Allow up to 5 minutes for video generation polling
+export const maxDuration = 300;
+
 const NARRATIVES = [
   `The salt air hits you before anything else — that specific mix of brine and warmth that only belongs to one place, one stretch of time. You close your eyes and you're there again: the sun hanging low and golden, painting everything in amber and rose. Someone's laughing just off to your left, the kind of laugh that rolls out easy, unhurried, like it has nowhere else to be.\n\nThe water was perfect that day. Not too cold, not too calm — just alive enough to remind you it had a personality of its own. You remember floating on your back, ears just below the surface, the world going quiet except for the deep, rhythmic pulse of the sea. Above you, the sky was the most impossible blue.\n\nThese are the moments that don't ask to be remembered. They just are — woven into who you are now, into the way you still tilt your face toward the sun without thinking, into why certain songs stop you cold. This memory isn't behind you. It's still happening, somewhere. You're still there. You always will be.`,
 
@@ -18,20 +21,100 @@ function pickNarrative(seed: string): string {
   return NARRATIVES[hash % NARRATIVES.length];
 }
 
-export async function POST(req: NextRequest) {
-  // Simulate AI processing time
-  await new Promise((r) => setTimeout(r, 3200));
+async function generateVideoFromImage(
+  imageBase64: string,
+  title: string
+): Promise<string | null> {
+  const apiKey = process.env.RUNWAY_API_KEY;
+  if (!apiKey) return null;
 
+  try {
+    const prompt = `${title}. A cinematic memory coming alive — gentle, natural movement, people moving naturally, soft atmospheric animation, warm and nostalgic feeling.`;
+
+    const startRes = await fetch(
+      "https://api.dev.runwayml.com/v1/image_to_video",
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${apiKey}`,
+          "X-Runway-Version": "2024-11-06",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          model: "gen3a_turbo",
+          promptImage: imageBase64,
+          promptText: prompt,
+          duration: 5,
+          ratio: "1280:768",
+        }),
+      }
+    );
+
+    if (!startRes.ok) {
+      console.error("Runway start failed:", await startRes.text());
+      return null;
+    }
+
+    const { id: taskId } = await startRes.json();
+
+    // Poll every 5 seconds, up to 3 minutes
+    for (let i = 0; i < 36; i++) {
+      await new Promise((r) => setTimeout(r, 5000));
+
+      const pollRes = await fetch(
+        `https://api.dev.runwayml.com/v1/tasks/${taskId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${apiKey}`,
+            "X-Runway-Version": "2024-11-06",
+          },
+        }
+      );
+
+      if (!pollRes.ok) continue;
+
+      const task = await pollRes.json();
+
+      if (task.status === "SUCCEEDED" && task.output?.[0]) {
+        return task.output[0] as string;
+      }
+      if (task.status === "FAILED") {
+        console.error("Runway task failed:", task);
+        return null;
+      }
+    }
+  } catch (err) {
+    console.error("Video generation error:", err);
+  }
+
+  return null;
+}
+
+export async function POST(req: NextRequest) {
   const body = await req.json().catch(() => ({}));
   const title = (body.title as string) || "A Beautiful Memory";
   const description = (body.description as string) || title;
+  const imageBase64 = body.imageBase64 as string | undefined;
 
   const narrative = pickNarrative(title + description);
+
+  // Attempt video generation if an image was provided
+  let videoUrl: string | undefined;
+  if (imageBase64) {
+    const generated = await generateVideoFromImage(imageBase64, title);
+    videoUrl = generated ?? undefined;
+  }
+
+  // Fallback minimum delay when no video generation runs (text-only memories)
+  if (!imageBase64) {
+    await new Promise((r) => setTimeout(r, 3200));
+  }
 
   return NextResponse.json({
     id: crypto.randomUUID(),
     title,
     narrative,
+    videoUrl,
     createdAt: new Date().toISOString(),
   });
 }

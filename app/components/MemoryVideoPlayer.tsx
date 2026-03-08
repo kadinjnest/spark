@@ -7,6 +7,7 @@ interface MemoryResult {
   title: string;
   narrative: string;
   imageUrl?: string;
+  videoUrl?: string;
   createdAt: string;
 }
 
@@ -146,7 +147,22 @@ export default function MemoryVideoPlayer({ memory, onReset }: Props) {
       <div className="glass rounded-3xl overflow-hidden shadow-2xl shadow-black/60 border border-white/10">
         {/* Image / visual area */}
         <div className="relative h-64 md:h-96 overflow-hidden bg-ocean-dark">
-          {memory.imageUrl ? (
+          {memory.videoUrl ? (
+            <>
+              {/* Generated video — plays automatically and loops */}
+              <video
+                src={memory.videoUrl}
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="absolute inset-0 w-full h-full object-cover"
+                style={{ filter: isPlaying ? "none" : "brightness(0.6)" }}
+              />
+              {/* Vignette */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-black/30" />
+            </>
+          ) : memory.imageUrl ? (
             <>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img

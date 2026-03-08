@@ -3,11 +3,11 @@
 import { useEffect, useState } from "react";
 
 const MESSAGES = [
-  "Riding the memory wave…",
-  "Diving into your moments…",
+  "Bringing your memory to life…",
+  "Animating the moment…",
   "The tide is bringing it back…",
-  "Surfing through your story…",
-  "Reading the ocean of time…",
+  "Generating your memory video…",
+  "Letting the scene breathe again…",
   "Almost there — catching the curl…",
 ];
 

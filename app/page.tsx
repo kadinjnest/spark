@@ -11,6 +11,7 @@ interface MemoryResult {
   title: string;
   narrative: string;
   imageUrl?: string;
+  videoUrl?: string;
   createdAt: string;
 }
 

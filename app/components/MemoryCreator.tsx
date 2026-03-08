@@ -9,6 +9,7 @@ interface MemoryResult {
   title: string;
   narrative: string;
   imageUrl?: string;
+  videoUrl?: string;
   createdAt: string;
 }
 
@@ -92,6 +93,7 @@ export default function MemoryCreator({ onMemoryCreated, onLoading }: Props) {
         body: JSON.stringify({
           title: title.trim() || undefined,
           description: description.trim() || imageFile?.name,
+          imageBase64: imagePreview ?? undefined,
         }),
       });
 
