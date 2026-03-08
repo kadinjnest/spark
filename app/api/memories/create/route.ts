@@ -31,10 +31,10 @@ async function generateVideoFromImage(
   try {
     const prompt = `${title}. A cinematic memory coming alive — gentle, natural movement, people moving naturally, soft atmospheric animation, warm and nostalgic feeling.`;
 
-    // Strip data URI prefix if present (e.g. "data:image/jpeg;base64,...")
-    const base64Data = imageBase64.includes(",")
-      ? imageBase64.split(",")[1]
-      : imageBase64;
+    // Preserve the full data URI (including correct MIME type) for Runway
+    const promptImage = imageBase64.startsWith("data:")
+      ? imageBase64
+      : `data:image/jpeg;base64,${imageBase64}`;
 
     const startRes = await fetch(
       "https://api.dev.runwayml.com/v1/image_to_video",
@@ -47,7 +47,7 @@ async function generateVideoFromImage(
         },
         body: JSON.stringify({
           model: "gen3a_turbo",
-          promptImage: `data:image/jpeg;base64,${base64Data}`,
+          promptImage,
           promptText: prompt,
           duration: 5,
           ratio: "1280:768",
