@@ -131,8 +131,8 @@ export default function MemoryCreator({ onMemoryCreated, onLoading }: Props) {
       // If a Runway task was started, poll for its result client-side
       if (data.taskId) {
         let videoUrl: string | undefined;
-        // Poll every 5 seconds for up to 3 minutes
-        for (let i = 0; i < 36; i++) {
+        // Poll every 5 seconds for up to 6 minutes
+        for (let i = 0; i < 72; i++) {
           await new Promise((r) => setTimeout(r, 5000));
           const statusRes = await fetch(`/api/memories/status/${data.taskId}`);
           if (!statusRes.ok) continue;

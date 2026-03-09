@@ -36,7 +36,7 @@ async function startVideoGeneration(
       : `data:image/jpeg;base64,${imageBase64}`;
 
     const startRes = await fetch(
-      "https://api.runwayml.com/v1/image_to_video",
+      "https://api.dev.runwayml.com/v1/image_to_video",
       {
         method: "POST",
         headers: {
